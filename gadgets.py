@@ -84,7 +84,9 @@ if __name__ == '__main__':
                     #Part to find ret instructions and extract gadget
 
                     ret = 'c3'
-                    positions = ([pos for pos, str in enumerate(s) if str == ret])
+                    print ret
+                    positions = ([pos for pos, str in enumerate(hexdata) if str == ret])
+
                     print positions
                     for pos in positions:
                         print hexdata[pos-4: pos+2]
