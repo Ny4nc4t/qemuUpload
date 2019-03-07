@@ -28,7 +28,6 @@ def convertXCS(s):
 
 ##############################################################
 
-
 def getHexStreamsFromElfExecutableSections(filename, length):
     print "Processing file:", filename
     with open(filename, 'rb') as f:
@@ -46,6 +45,7 @@ def getHexStreamsFromElfExecutableSections(filename, length):
             #.interp .note.ABI-tag .note.gnu.build-id .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .init .plt .text .fini .rodata .eh_frame_hdr .eh_frame
         
             if section.name not in goodSections:
+            
                 continue
             
             # add new executable section with the following information
