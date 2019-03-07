@@ -72,7 +72,7 @@ if __name__ == '__main__':
         if str(sys.argv[2]) == '-length':
             md = Cs(CS_ARCH_X86, CS_MODE_64)
             for filename in sys.argv[4:]:
-                length = int(sys.argv[3])*2
+                length = (int(sys.argv[3])*2)+2
                 r = getHexStreamsFromElfExecutableSections(filename)
                 print "Found ", len(r), " executable sections:"
                 i = 0
