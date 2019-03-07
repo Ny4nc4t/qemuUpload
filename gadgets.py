@@ -71,8 +71,38 @@ if __name__ == '__main__':
     if sys.argv[1] == '--test':
         if str(sys.argv[2]) == '-length':
             md = Cs(CS_ARCH_X86, CS_MODE_64)
+            # for filename in sys.argv[4:]:
+            #     length = (int(sys.argv[3])*2)+2
+            #     r = getHexStreamsFromElfExecutableSections(filename)
+            #     print "Found ", len(r), " executable sections:"
+            #     i = 0
+            #     for s in r:
+            #         print "   ", i, ": ", s['name'], "0x", hex(s['addr']), s['hexStream']
+            #         i += 1
+            #         hexdata = s['hexStream']
+            #
+            #         #Part to find ret instructions and extract gadget
+            #         badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave']
+            #         ret = 'c3'
+            #         for i, _ in enumerate(hexdata):
+            #             if hexdata[i:i + len(ret)] == ret:
+            #                 gadget = hexdata[i-length: i+2]
+            #                 gadget = convertXCS(gadget)
+            #                 offset = 0
+            #                 disasCode = md.disasm_lite(gadget, offset)
+            #                 strList = ['gadget : \n']
+            #
+            #                 for (address, size, mnemonic, op_str) in disasCode:
+            #                     endRet = ''
+            #                     if str(mnemonic) not in badInstruct :
+            #                         endRet = str(mnemonic)
+            #                         strList.append(("%s      %s %s \n") %(address,mnemonic, op_str))
+            #                     if endRet == 'ret' :
+            #                         print '%s' % ' \n'.join(map(str, strList))
+
             for filename in sys.argv[4:]:
-                length = (int(sys.argv[3])*2)+2
+                lengthHex = (int(sys.argv[3])*15)+2
+                nbInstru = int(sys.argv[3])
                 r = getHexStreamsFromElfExecutableSections(filename)
                 print "Found ", len(r), " executable sections:"
                 i = 0
@@ -86,7 +116,7 @@ if __name__ == '__main__':
                     ret = 'c3'
                     for i, _ in enumerate(hexdata):
                         if hexdata[i:i + len(ret)] == ret:
-                            gadget = hexdata[i-length: i+2]
+                            gadget = hexdata[i-lengthHex: i+2]
                             gadget = convertXCS(gadget)
                             offset = 0
                             disasCode = md.disasm_lite(gadget, offset)
@@ -96,16 +126,11 @@ if __name__ == '__main__':
                                 endRet = ''
                                 if str(mnemonic) not in badInstruct :
                                     endRet = str(mnemonic)
-                                    strList.append(("%s      %s %s \n") %(address,mnemonic, op_str))
-                                if endRet == 'ret' :
-                                    print '%s' % ' \n'.join(map(str, strList))
+                                    strList.append([address,mnemonic, op_str])
+                                if endRet == 'ret':
+                                    for a in strList[nbInstru:len(strList)-1]:
+                                        print ("%x      %s %s \n") % (a[0], a[1], a[2])
+                                        #print '%s' % ' \n'.join(map(str, strList))
 
 
 
-def index_ret(string, sub_string):
-    cnt = 0
-    len_ss = len(sub_string)
-    for i in range(len(string) - len_ss + 1):
-        if string[i:i+len_ss] == sub_string:
-            cnt += 1
-    return cnt
