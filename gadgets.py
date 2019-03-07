@@ -84,7 +84,6 @@ if __name__ == '__main__':
                     #Part to find ret instructions and extract gadget
 
                     ret = 'c3'
-                    print ret
                     for i, _ in enumerate(hexdata):
                         if hexdata[i:i + len(ret)] == ret:
                             gadget = hexdata[i-length: i+2]
@@ -92,8 +91,8 @@ if __name__ == '__main__':
                             offset = 0
                             print md.disasm_lite(gadget, offset)
                             for (address, size, mnemonic, op_str) in md.disasm_lite(gadget, offset):
-                                print i
-                                print ("%s      %s %s \n") %(address,mnemonic, op_str)
+                                if str(mnemonic) not in  ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe' ]:
+                                    print ("%s      %s %s \n") %(address,mnemonic, op_str)
                                 #print ("gadget: %s %s \n") %(mnemonic, op_str)
 
 
