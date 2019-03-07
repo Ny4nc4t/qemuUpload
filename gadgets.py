@@ -92,7 +92,8 @@ if __name__ == '__main__':
                             offset = 0
                             for (address, size, mnemonic, op_str) in md.disasm_lite(gadget, offset):
                                 print i
-                                print ("gadget: %s %s \n") %(mnemonic, op_str)
+                                print md.disasm_lite(gadget, offset)
+                                #print ("gadget: %s %s \n") %(mnemonic, op_str)
 
 
 def index_ret(string, sub_string):
