@@ -85,10 +85,8 @@ if __name__ == '__main__':
 
                     ret = 'c3'
                     print ret
-                    position = -1
                     for i, _ in enumerate(hexdata):
                         if hexdata[i:i + len(ret)] == ret:
-                            print hexdata[i-4: i+2]
                             gadget = hexdata[i-4: i+2]
                             gadget = convertXCS(gadget)
                             offset = 0
