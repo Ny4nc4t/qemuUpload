@@ -86,7 +86,7 @@ if __name__ == '__main__':
                     ret = 'c3'
                     positions = ([pos for pos, str in enumerate(s) if str == ret])
                     for pos in positions:
-                        gadget = hexdata[pos-length: pos+2]
+                        gadget = hexdata[pos-4: pos+2]
                         gadget = convertXCS(gadget)
                         offset = 0
                         for (address, size, mnemonic, op_str) in md.disasm_lite(gadget, offset):
