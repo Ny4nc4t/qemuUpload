@@ -119,7 +119,7 @@ if __name__ == '__main__':
                             offset = 0
                             disasCode = md.disasm_lite(gadget, offset)
                             print 'gadget : \n'
-                            strList = []
+                            strList = ['something']
 
                             for (address, size, mnemonic, op_str) in disasCode:
                                 endRet = ''
