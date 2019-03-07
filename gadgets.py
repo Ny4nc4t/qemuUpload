@@ -85,16 +85,15 @@ if __name__ == '__main__':
 
                     ret = 'c3'
                     print ret
-                    positions = ([pos for pos, str in enumerate(hexdata) if str == ret])
-
-                    print positions
-                    for pos in positions:
-                        print hexdata[pos-4: pos+2]
-                        gadget = hexdata[pos-4: pos+2]
-                        gadget = convertXCS(gadget)
-                        offset = 0
-                        for (address, size, mnemonic, op_str) in md.disasm_lite(gadget, offset):
-                            print ("gadget: %s %s \n") %(mnemonic, op_str)
+                    position = -1
+                    for i, _ in enumerate(hexdata):
+                        if hexdata[i:i + len(ret)] == ret:
+                            print hexdata[i-4: i+2]
+                            gadget = hexdata[i-4: i+2]
+                            gadget = convertXCS(gadget)
+                            offset = 0
+                            for (address, size, mnemonic, op_str) in md.disasm_lite(gadget, offset):
+                                print ("gadget: %s %s \n") %(mnemonic, op_str)
 
 
 def index_ret(string, sub_string):
