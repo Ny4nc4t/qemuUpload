@@ -82,7 +82,7 @@ if __name__ == '__main__':
                     hexdata = s['hexStream']
 
                     #Part to find ret instructions and extract gadget
-
+                    badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave']
                     ret = 'c3'
                     for i, _ in enumerate(hexdata):
                         if hexdata[i:i + len(ret)] == ret:
@@ -90,8 +90,9 @@ if __name__ == '__main__':
                             gadget = convertXCS(gadget)
                             offset = 0
                             print md.disasm_lite(gadget, offset)
-                            for (address, size, mnemonic, op_str) in md.disasm_lite(gadget, offset):
-                                if str(mnemonic) not in  ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe' ]:
+                            disasCode = md.disasm_lite(gadget, offset)
+                            for (address, size, mnemonic, op_str) in disasCode:
+                                if str(mnemonic) not in badInstruct :
                                     print ("%s      %s %s \n") %(address,mnemonic, op_str)
                                 #print ("gadget: %s %s \n") %(mnemonic, op_str)
 
