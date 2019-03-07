@@ -61,32 +61,32 @@ def getHexStreamsFromElfExecutableSections(filename, length):
             newExecSection['addr'] = addr
             newExecSection['hexStream'] = hexStream
             if hexStream.length == length :
-            	print hexStream
-            	print "\n"
-            	if hexStream[-2:] == 'c3':
-            		execSections.append(newExecSection)
+                print hexStream
+                print "\n"
+                if hexStream[-2:] == 'c3':
+                    execSections.append(newExecSection)
 
         return execSections
 
 
 if __name__ == '__main__':
     if sys.argv[1] == '--test':
-    	if (sys.argv[2] == '-length') and (sys.argv[3] %2 ==0):
-	        md = Cs(CS_ARCH_X86, CS_MODE_64)
-	        for filename in sys.argv[4:]:
-	        	length = sys.argv[3]
-	            r = getHexStreamsFromElfExecutableSections(filename, length)
-	            print "Found ", len(r), " executable sections:"
-	            i = 0
-	            for s in r:
-	                print "   ", i, ": ", s['name'], "0x", hex(s['addr']), s['hexStream']
-	                i += 1
+        if (sys.argv[2] == '-length') and (sys.argv[3] %2 ==0):
+            md = Cs(CS_ARCH_X86, CS_MODE_64)
+            for filename in sys.argv[4:]:
+                length = sys.argv[3]
+                r = getHexStreamsFromElfExecutableSections(filename, length)
+                print "Found ", len(r), " executable sections:"
+                i = 0
+                for s in r:
+                    print "   ", i, ": ", s['name'], "0x", hex(s['addr']), s['hexStream']
+                    i += 1
 	                
-	                hexdata = s['hexStream']
-	                gadget = hexdata[0 : 10]           
-	                gadget = convertXCS(gadget)
-	                offset = 0
-	                for (address, size, mnemonic, op_str) in md.disasm_lite(gadget, offset):
-	                    print ("gadget: %s %s \n") %(mnemonic, op_str)
+                    hexdata = s['hexStream']
+                    gadget = hexdata[0 : 10]
+                    gadget = convertXCS(gadget)
+                    offset = 0
+                    for (address, size, mnemonic, op_str) in md.disasm_lite(gadget, offset):
+                        print ("gadget: %s %s \n") %(mnemonic, op_str)
 
             
