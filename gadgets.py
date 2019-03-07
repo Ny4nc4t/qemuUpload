@@ -90,7 +90,8 @@ if __name__ == '__main__':
                             gadget = convertXCS(gadget)
                             offset = 0
                             disasCode = md.disasm_lite(gadget, offset)
-                            strList = []
+                            strList = ['gadget : \n']
+
                             for (address, size, mnemonic, op_str) in disasCode:
                                 endRet = ''
                                 if str(mnemonic) not in badInstruct :
