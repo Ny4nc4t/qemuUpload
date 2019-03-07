@@ -13,9 +13,9 @@ def convertXCS(s):
         print "Input too short!"
         return 0
     
-    if len(s) % 2 != 0:
-        print "Input must be multiple of 2!"
-        return 0
+    # if len(s) % 2 != 0:
+    #     print "Input must be multiple of 2!"
+    #     return 0
 
     conX = ''
     
@@ -126,7 +126,7 @@ if __name__ == '__main__':
                                 endRet = ''
                                 if str(mnemonic) not in badInstruct :
                                     endRet = str(mnemonic)
-                                    strList.append([address,mnemonic, op_str])
+                                    strList.append([address, mnemonic, op_str])
                                 if endRet == 'ret':
                                     for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
                                         print ("%x      %s %s \n") % (a[0], a[1], a[2])
