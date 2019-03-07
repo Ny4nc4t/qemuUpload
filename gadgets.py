@@ -106,7 +106,7 @@ if __name__ == '__main__':
                 print "Found ", len(r), " executable sections:"
                 i = 0
                 for s in r:
-                    print "   ", i, ": ", s['name'], "0x", hex(s['addr']), s['hexStream']
+                    # print "   ", i, ": ", s['name'], "0x", hex(s['addr']), s['hexStream']
                     i += 1
                     hexdata = s['hexStream']
 
@@ -132,6 +132,6 @@ if __name__ == '__main__':
                                 for a in strList[len(strList)-nbInstru-1:len(strList)]:
                                     print ("%s      %s %s \n") % (a[0], a[1], a[2])
                                     #print '%s' % ' \n'.join(map(str, strList))
-
+                print nbGadget
 
 
