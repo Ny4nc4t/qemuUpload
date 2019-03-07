@@ -89,7 +89,7 @@ if __name__ == '__main__':
                         if hexdata[i:i + len(ret)] == ret:
                             gadget = hexdata[i-4: i+2]
                             gadget = convertXCS(gadget)
-                            offset = 0
+                            offset = 6
                             for (address, size, mnemonic, op_str) in md.disasm_lite(gadget, offset):
                                 print i
                                 print ("gadget: %s %s \n") %(mnemonic, op_str)
