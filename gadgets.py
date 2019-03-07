@@ -99,8 +99,9 @@ if __name__ == '__main__':
             #                         print '%s' % ' \n'.join(map(str, strList))
 
             for filename in sys.argv[4:]:
-                lengthHex = (int(sys.argv[3])*14)+2
+                lengthHex = (int(sys.argv[3])*16)+2
                 nbInstru = int(sys.argv[3])
+                nbGadget = 0
                 r = getHexStreamsFromElfExecutableSections(filename)
                 print "Found ", len(r), " executable sections:"
                 i = 0
@@ -118,7 +119,7 @@ if __name__ == '__main__':
                             gadget = convertXCS(gadget)
                             offset = 0
                             disasCode = md.disasm_lite(gadget, offset)
-                            strList = ['something']
+                            strList = ['']
 
                             for (address, size, mnemonic, op_str) in disasCode:
                                 endRet = ''
@@ -128,6 +129,7 @@ if __name__ == '__main__':
                             last = strList[-1]
                             if str(last[1]) == 'ret':
                                 print 'gadget : \n'
+                                nbGadget += 1
                                 for a in strList[len(strList)-nbInstru-1:len(strList)]:
                                     print ("%s      %s %s \n") % (a[0], a[1], a[2])
                                     #print '%s' % ' \n'.join(map(str, strList))
