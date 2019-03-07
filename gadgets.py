@@ -90,6 +90,7 @@ if __name__ == '__main__':
                             gadget = convertXCS(gadget)
                             offset = 0
                             print md.disasm_lite(gadget, offset)
+                            print hexdata[i-length: i+2]
                             disasCode = md.disasm_lite(gadget, offset)
                             for (address, size, mnemonic, op_str) in disasCode:
                                 if str(mnemonic) not in badInstruct :
