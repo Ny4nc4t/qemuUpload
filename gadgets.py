@@ -119,15 +119,14 @@ if __name__ == '__main__':
                             gadget = convertXCS(gadget)
                             offset = 0
                             disasCode = md.disasm_lite(gadget, offset)
-                            strList = ['']
+                            strList = []
 
                             for (address, size, mnemonic, op_str) in disasCode:
                                 endRet = ''
                                 if str(mnemonic) not in badInstruct :
                                     strList.append([address, mnemonic, op_str])
                             #print str(strList[len(strList)-1][1])
-                            last = strList[-1]
-                            if str(last[1]) == 'ret':
+                            if strList and str(strList[-1][1]) == 'ret':
                                 print 'gadget : \n'
                                 nbGadget += 1
                                 for a in strList[len(strList)-nbInstru-1:len(strList)]:
