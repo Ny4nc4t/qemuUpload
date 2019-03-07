@@ -93,7 +93,7 @@ if __name__ == '__main__':
                             print md.disasm_lite(gadget, offset)
                             for (address, size, mnemonic, op_str) in md.disasm_lite(gadget, offset):
                                 print i
-                                print mnemonic
+                                print ("%s      %s %s \n") %(address,mnemonic, op_str)
                                 #print ("gadget: %s %s \n") %(mnemonic, op_str)
 
 
