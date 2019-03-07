@@ -68,8 +68,11 @@ def getHexStreamsFromElfExecutableSections(filename):
 
 
 if __name__ == '__main__':
+    print '1'
     if sys.argv[1] == '--test':
+        print '2'
         if (sys.argv[2] == '-length') and (len(sys.argv[3]) %2 ==0):
+            print '3'
             md = Cs(CS_ARCH_X86, CS_MODE_64)
             for filename in sys.argv[4:]:
                 length = sys.argv[3]-2
