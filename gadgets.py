@@ -126,7 +126,7 @@ if __name__ == '__main__':
                                 if str(mnemonic) not in badInstruct :
                                     strList.append([address, mnemonic, op_str])
                             #print str(strList[len(strList)-1][1])
-                            last = strList[len(strList)-1]
+                            last = strList[-1]
                             if str(last[1]) == 'ret':
                                 for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
                                     print ("%s      %s %s \n") % (a[0], a[1], a[2])
