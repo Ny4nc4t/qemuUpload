@@ -128,7 +128,7 @@ if __name__ == '__main__':
                             #print str(strList[len(strList)-1][1])
                             last = strList[-1]
                             if str(last[1]) == 'ret':
-                                for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
+                                for a in strList[len(strList)-nbInstru-1:len(strList)]:
                                     print ("%s      %s %s \n") % (a[0], a[1], a[2])
                                     #print '%s' % ' \n'.join(map(str, strList))
 
