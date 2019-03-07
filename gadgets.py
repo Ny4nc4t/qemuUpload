@@ -99,7 +99,7 @@ if __name__ == '__main__':
             #                         print '%s' % ' \n'.join(map(str, strList))
 
             for filename in sys.argv[4:]:
-                lengthHex = (int(sys.argv[3])*15)+2
+                lengthHex = (int(sys.argv[3])*14)+2
                 nbInstru = int(sys.argv[3])
                 r = getHexStreamsFromElfExecutableSections(filename)
                 print "Found ", len(r), " executable sections:"
@@ -124,7 +124,7 @@ if __name__ == '__main__':
                                 endRet = ''
                                 if str(mnemonic) not in badInstruct :
                                     strList.append([address, mnemonic, op_str])
-                            print str(strList[len(strList)][1])
+                            print str(strList[len(strList)-1][1])
                             if str(strList[len(strList)-1][1]) == 'ret':
                                 for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
                                     print ("%x      %s %s \n") % (a[0], a[1], a[2])
