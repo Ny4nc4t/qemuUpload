@@ -68,11 +68,8 @@ def getHexStreamsFromElfExecutableSections(filename):
 
 
 if __name__ == '__main__':
-    print '1'
     if sys.argv[1] == '--test':
-        print '2'
         if (str(sys.argv[2]) == '-length') and (int(sys.argv[3]) %2 ==0):
-            print '3'
             md = Cs(CS_ARCH_X86, CS_MODE_64)
             for filename in sys.argv[4:]:
                 length = int(sys.argv[3])-2
@@ -88,7 +85,9 @@ if __name__ == '__main__':
 
                     ret = 'c3'
                     positions = ([pos for pos, str in enumerate(s) if str == ret])
+                    print positions
                     for pos in positions:
+                        print hexdata[pos-4: pos+2]
                         gadget = hexdata[pos-4: pos+2]
                         gadget = convertXCS(gadget)
                         offset = 0
