@@ -118,7 +118,6 @@ if __name__ == '__main__':
                             gadget = convertXCS(gadget)
                             offset = 0
                             disasCode = md.disasm_lite(gadget, offset)
-                            print 'gadget : \n'
                             strList = ['something']
 
                             for (address, size, mnemonic, op_str) in disasCode:
@@ -128,6 +127,7 @@ if __name__ == '__main__':
                             #print str(strList[len(strList)-1][1])
                             last = strList[-1]
                             if str(last[1]) == 'ret':
+                                print 'gadget : \n'
                                 for a in strList[len(strList)-nbInstru-1:len(strList)]:
                                     print ("%s      %s %s \n") % (a[0], a[1], a[2])
                                     #print '%s' % ' \n'.join(map(str, strList))
