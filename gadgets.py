@@ -128,7 +128,7 @@ if __name__ == '__main__':
                                     endRet = str(mnemonic)
                                     strList.append([address,mnemonic, op_str])
                                 if endRet == 'ret':
-                                    for a in strList[nbInstru:len(strList)-1]:
+                                    for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
                                         print ("%x      %s %s \n") % (a[0], a[1], a[2])
                                         #print '%s' % ' \n'.join(map(str, strList))
 
