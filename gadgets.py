@@ -69,10 +69,10 @@ def getHexStreamsFromElfExecutableSections(filename):
 
 if __name__ == '__main__':
     if sys.argv[1] == '--test':
-        if (sys.argv[2] == '-length') and (sys.argv[3] %2 ==0):
+        if (sys.argv[2] == '-length') and (len(sys.argv[3]) %2 ==0):
             md = Cs(CS_ARCH_X86, CS_MODE_64)
             for filename in sys.argv[4:]:
-                length = sys.argv[3]
+                length = sys.argv[3]-2
                 r = getHexStreamsFromElfExecutableSections(filename)
                 print "Found ", len(r), " executable sections:"
                 i = 0
@@ -86,7 +86,7 @@ if __name__ == '__main__':
                     ret = 'c3'
                     positions = ([pos for pos, str in enumerate(s) if str == ret])
                     for pos in positions:
-                        gadget = hexdata[pos-4: pos+2]
+                        gadget = hexdata[pos-length: pos+2]
                         gadget = convertXCS(gadget)
                         offset = 0
                         for (address, size, mnemonic, op_str) in md.disasm_lite(gadget, offset):
