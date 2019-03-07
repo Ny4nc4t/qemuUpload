@@ -89,8 +89,6 @@ if __name__ == '__main__':
                             gadget = hexdata[i-length: i+2]
                             gadget = convertXCS(gadget)
                             offset = 0
-                            print md.disasm_lite(gadget, offset)
-                            print hexdata[i-length: i+2]
                             disasCode = md.disasm_lite(gadget, offset)
                             strList = []
                             for (address, size, mnemonic, op_str) in disasCode:
@@ -98,10 +96,9 @@ if __name__ == '__main__':
                                 if str(mnemonic) not in badInstruct :
                                     endRet = str(mnemonic)
                                     strList.append(("%s      %s %s \n") %(address,mnemonic, op_str))
-                                    #print ("%s      %s %s \n") %(address,mnemonic, op_str)
                                 if endRet == 'ret' :
-                                    print '[%s]' % ' \n'.join(map(str, strList))
-                                #print ("gadget: %s %s \n") %(mnemonic, op_str)
+                                    print '%s' % ' \n'.join(map(str, strList))
+
 
 
 def index_ret(string, sub_string):
