@@ -99,7 +99,7 @@ if __name__ == '__main__':
             #                         print '%s' % ' \n'.join(map(str, strList))
 
             for filename in sys.argv[4:]:
-                lengthHex = (int(sys.argv[3])*16)+2
+                lengthHex = (int(sys.argv[3])*30)+2
                 nbInstru = int(sys.argv[3])
                 nbGadget = 0
                 r = getHexStreamsFromElfExecutableSections(filename)
