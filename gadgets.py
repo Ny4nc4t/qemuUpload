@@ -127,7 +127,7 @@ if __name__ == '__main__':
                                     strList.append([address, mnemonic, op_str])
                             #print str(strList[len(strList)-1][1])
                             if strList and str(strList[-1][1]) == 'ret':
-                                print 'gadget : \n'
+                                print 'gadget at %s : \n' %(i)
                                 nbGadget += 1
                                 for a in strList[len(strList)-nbInstru-1:len(strList)]:
                                     print ("%s      %s %s \n") % (a[0], a[1], a[2])
