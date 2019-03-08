@@ -1,3 +1,14 @@
 #!/bin/bash
 
-printf '\x47%.0s' {1..1020} 
+end=$1
+
+printf '' > input1.dat
+for ((i=1;i<=$end ; i++))
+do 
+printf '\x47' >> input1.dat
+done
+
+
+
+
+./hexdump ./input1.dat
