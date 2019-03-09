@@ -112,7 +112,7 @@ if __name__ == '__main__':
                     hexdata = s['hexStream']
 
                     #Part to find ret instructions and extract gadget
-                    badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave']
+                    badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave', 'ret', 'retq']
                     ret = 'c3'
                     for i, _ in enumerate(hexdata):
                         if hexdata[i:i + len(ret)] == ret:
@@ -122,18 +122,21 @@ if __name__ == '__main__':
                             offset = 0
                             disasCode = md.disasm_lite(gadget, offset)
                             strList = []
-
+                            out = False
                             for (address, size, mnemonic, op_str) in disasCode:
                                 strList.append([address, mnemonic, op_str])
                             #print str(strList[len(strList)-1][1])
-                            if strList and str(strList[-1][1]) == 'ret' :
-                                print 'gadget at %s : \n' %(i)
+                            if strList and str(strList[-1][1]) == ('ret' or 'retq'):
+                                print 'gadget at %x : \n' %(i)
                                 nbGadget += 1
-                                for a in strList[len(strList)-nbInstru-1:len(strList)]:
+                                for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
                                     if a[1] not in badInstruct :
                                         print ("%x      %s %s \n") % (a[0], a[1], a[2])
                                     else:
+                                        out = True
                                         break
+                                if not out:
+                                    print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
                                     #print '%s' % ' \n'.join(map(str, strList))
                 print nbGadget
                 print nbret
