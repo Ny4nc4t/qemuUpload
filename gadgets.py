@@ -97,17 +97,16 @@ if __name__ == '__main__':
             #                         strList.append(("%s      %s %s \n") %(address,mnemonic, op_str))
             #                     if endRet == 'ret' :
             #                         print '%s' % ' \n'.join(map(str, strList))
-
+            nbret = 0
             for filename in sys.argv[4:]:
                 lengthHex = (int(sys.argv[3])*30)+2
                 nbInstru = int(sys.argv[3])
                 nbGadget = 0
+                nbret += 1
                 r = getHexStreamsFromElfExecutableSections(filename)
                 print "Found ", len(r), " executable sections:"
-                i = 0
                 for s in r:
-                    # print "   ", i, ": ", s['name'], "0x", hex(s['addr']), s['hexStream']
-                    i += 1
+                    print "   ", i, ": ", s['name'], "0x", hex(s['addr']) #, s['hexStream']
                     hexdata = s['hexStream']
 
                     #Part to find ret instructions and extract gadget
@@ -122,16 +121,15 @@ if __name__ == '__main__':
                             strList = []
 
                             for (address, size, mnemonic, op_str) in disasCode:
-                                endRet = ''
-                                if str(mnemonic) not in badInstruct :
-                                    strList.append([address, mnemonic, op_str])
+                                strList.append([address, mnemonic, op_str])
                             #print str(strList[len(strList)-1][1])
-                            if strList and str(strList[-1][1]) == 'ret':
+                            if strList and str(strList[-1][1]) == 'ret' and strList[len(strList)-nbInstru-1:len(strList)][1] not in badInstruct:
                                 print 'gadget at %s : \n' %(i)
                                 nbGadget += 1
                                 for a in strList[len(strList)-nbInstru-1:len(strList)]:
-                                    print ("%s      %s %s \n") % (a[0], a[1], a[2])
+                                    print ("%x      %s %s \n") % (a[0], a[1], a[2])
                                     #print '%s' % ' \n'.join(map(str, strList))
                 print nbGadget
+                print nbret
 
 
