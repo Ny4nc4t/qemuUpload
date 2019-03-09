@@ -102,7 +102,7 @@ if __name__ == '__main__':
                 lengthHex = (int(sys.argv[3])*30)+2
                 nbInstru = int(sys.argv[3])
                 nbGadget = 0
-                nbret += 1
+
                 r = getHexStreamsFromElfExecutableSections(filename)
                 print "Found ", len(r), " executable sections:"
                 i = 0
@@ -116,6 +116,7 @@ if __name__ == '__main__':
                     ret = 'c3'
                     for i, _ in enumerate(hexdata):
                         if hexdata[i:i + len(ret)] == ret:
+                            nbret += 1
                             gadget = hexdata[i-lengthHex: i+2]
                             gadget = convertXCS(gadget)
                             offset = 0
@@ -125,11 +126,14 @@ if __name__ == '__main__':
                             for (address, size, mnemonic, op_str) in disasCode:
                                 strList.append([address, mnemonic, op_str])
                             #print str(strList[len(strList)-1][1])
-                            if strList and str(strList[-1][1]) == 'ret' and strList[len(strList)-nbInstru-1:len(strList)][1] not in badInstruct:
+                            if strList and str(strList[-1][1]) == 'ret' :
                                 print 'gadget at %s : \n' %(i)
                                 nbGadget += 1
                                 for a in strList[len(strList)-nbInstru-1:len(strList)]:
-                                    print ("%x      %s %s \n") % (a[0], a[1], a[2])
+                                    if a[1] not in badInstruct :
+                                        print ("%x      %s %s \n") % (a[0], a[1], a[2])
+                                    else:
+                                        break
                                     #print '%s' % ' \n'.join(map(str, strList))
                 print nbGadget
                 print nbret
