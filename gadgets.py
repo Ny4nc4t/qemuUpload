@@ -128,14 +128,15 @@ if __name__ == '__main__':
                             #print str(strList[len(strList)-1][1])
                             if strList and str(strList[-1][1]) == ('ret' or 'retq'):
                                 print 'gadget at %x : \n' %(i)
-                                nbGadget += 1
+
                                 for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
-                                    if a[1] not in badInstruct :
+                                    if str(a[1]) not in badInstruct:
                                         print ("%x      %s %s \n") % (a[0], a[1], a[2])
                                     else:
                                         out = True
                                         break
                                 if not out:
+                                    nbGadget += 1
                                     print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
                                     #print '%s' % ' \n'.join(map(str, strList))
                 print nbGadget
