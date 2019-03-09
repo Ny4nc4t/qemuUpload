@@ -122,22 +122,25 @@ if __name__ == '__main__':
                             disasCode = md.disasm_lite(gadget, offset)
                             strList = []
                             out = False
+                            isUseful = False
                             for (address, size, mnemonic, op_str) in disasCode:
                                 strList.append([address, mnemonic, op_str])
                             #print str(strList[len(strList)-1][1])
                             if strList and str(strList[-1][1]) == ('ret' or 'retq'):
                                 nbret += 1
-                                print 'gadget at %x : \n' %(i)
+
 
                                 for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
-                                    if str(a[1]) not in badInstruct:
-                                        print ("%x      %s %s \n") % (a[0], a[1], a[2])
-                                    else:
+                                    if str(a[1]) in badInstruct:
                                         out = True
-                                        break
-                                if not out:
+                                    if str(a[1]) == 'pop' and str(a[2]) == 'rsi':
+                                        isUseful = True
+                                if not out and isUseful:
                                     nbGadget += 1
-                                    print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
+                                    print 'gadget at %x : \n' % (i)
+                                    for a in strList[len(strList) - nbInstru - 1:len(strList)]:
+                                        print ("%x      %s %s \n") % (a[0], a[1], a[2])
+                                    #print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
                                     #print '%s' % ' \n'.join(map(str, strList))
                 print nbGadget
                 print nbret
