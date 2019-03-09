@@ -116,7 +116,6 @@ if __name__ == '__main__':
                     ret = 'c3'
                     for i, _ in enumerate(hexdata):
                         if hexdata[i:i + len(ret)] == ret:
-                            nbret += 1
                             gadget = hexdata[i-lengthHex: i+2]
                             gadget = convertXCS(gadget)
                             offset = 0
@@ -127,6 +126,7 @@ if __name__ == '__main__':
                                 strList.append([address, mnemonic, op_str])
                             #print str(strList[len(strList)-1][1])
                             if strList and str(strList[-1][1]) == ('ret' or 'retq'):
+                                nbret += 1
                                 print 'gadget at %x : \n' %(i)
 
                                 for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
