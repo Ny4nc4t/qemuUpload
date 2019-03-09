@@ -105,8 +105,10 @@ if __name__ == '__main__':
                 nbret += 1
                 r = getHexStreamsFromElfExecutableSections(filename)
                 print "Found ", len(r), " executable sections:"
+                i = 0
                 for s in r:
                     print "   ", i, ": ", s['name'], "0x", hex(s['addr']) #, s['hexStream']
+                    i += 1
                     hexdata = s['hexStream']
 
                     #Part to find ret instructions and extract gadget
