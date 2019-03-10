@@ -133,7 +133,7 @@ if __name__ == '__main__':
                                 for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
                                     if str(a[1]) in badInstruct:
                                         out = True
-                                    if str(a[1]) == 'syscall' :  #and str(a[2]) == 'rsi':
+                                    if str(a[1]) == 'push' and str(a[2]) == 'rsp':
                                         isUseful = True
                                 if not out and isUseful:
                                     nbGadget += 1

