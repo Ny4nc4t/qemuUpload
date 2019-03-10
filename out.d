@@ -1,65 +1,80 @@
 Processing file: /lib/x86_64-linux-gnu/libc-2.24.so
-Found  1  executable sections:
-    0 :  .text 0x 0x1f940
-gadget at 132bae : 
+Found  16  executable sections:
+    0 :  .note.gnu.build-id 0x 0x270
+    71 :  .note.ABI-tag 0x 0x294
+    63 :  .gnu.hash 0x 0x2b8
+    30127 :  .dynsym 0x 0x3d90
+    107855 :  .dynstr 0x 0x11038
+    46081 :  .gnu.version 0x 0x16a3a
+    8987 :  .gnu.version_r 0x 0x17f60
+    95 :  .rela.dyn 0x 0x17f90
+    61199 :  .rela.plt 0x 0x1f718
+    623 :  .plt 0x 0x1f850
+    447 :  .text 0x 0x1f940
+gadget at 18ac7c : 
 
-e      syscall  
+29      mov rax, rbx 
 
-10      ret  
+2c      pop rdx 
 
-gadget at 132bce : 
+2d      pop rbx 
 
-e      syscall  
+2e      ret  
 
-10      ret  
+gadget at 1ab776 : 
 
-gadget at 132bee : 
+2a      syscall  
 
-e      syscall  
+2c      pop rdx 
 
-10      ret  
+2d      pop rsi 
 
-gadget at 132c0e : 
+2e      ret  
 
-e      syscall  
+gadget at 1b3d38 : 
 
-10      ret  
+29      mov rax, rbx 
 
-gadget at 132c2e : 
+2c      pop rdx 
 
-e      syscall  
+2d      pop rbx 
 
-10      ret  
+2e      ret  
 
-gadget at 132c4e : 
+gadget at 1bc88c : 
 
-e      syscall  
+29      mov rax, rbx 
 
-10      ret  
+2c      pop rdx 
 
-gadget at 13306e : 
+2d      pop rbx 
 
-e      syscall  
+2e      ret  
 
-10      ret  
+gadget at 1ff458 : 
 
-gadget at 17788e : 
+2b      pop rax 
 
-e      syscall  
+2c      pop rdx 
 
-10      ret  
+2d      pop rbx 
 
-gadget at 192f4e : 
+2e      ret  
 
-e      syscall  
+gadget at 1ff7ac : 
 
-10      ret  
+2b      pop rax 
 
-gadget at 1c6074 : 
+2c      pop rdx 
 
-e      syscall  
+2d      pop rbx 
 
-10      ret  
+2e      ret  
 
-10
-4261
+    2439589 :  .rodata 0x 0x14a660
+    267263 :  .interp 0x 0x16b060
+    55 :  .eh_frame_hdr 0x 0x16b07c
+    45847 :  .eh_frame 0x 0x170a08
+    266935 :  .hash 0x 0x191758
+6
+4136
