@@ -69,7 +69,63 @@ if __name__ == '__main__':
     if sys.argv[1] == '--test':
         if str(sys.argv[2]) == '-length':
             md = Cs(CS_ARCH_X86, CS_MODE_64)
-            # for filename in sys.argv[4:]:
+            nbret = 0
+            for filename in sys.argv[4:]:
+                lengthHex = (int(sys.argv[3])*30)+2
+                nbInstru = int(sys.argv[3])
+                nbGadget = 0
+
+                r = getHexStreamsFromElfExecutableSections(filename)
+                print "Found ", len(r), " executable sections:"
+                i = 0
+                for s in r:
+                    print "   ", i, ": ", s['name'], "0x", hex(s['addr']) #, s['hexStream']
+                    i += 1
+                    hexdata = s['hexStream']
+
+                    #Part to find ret instructions and extract gadget
+                    badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave', 'ret', 'retq']
+                    ret = 'c3'
+                    for i, _ in enumerate(hexdata): #loops through hex string
+                        #TODO the problem might be here. Splitting arbitrarily hex string might result into wrong
+                        #assembly instructions and thus wrong gadgets
+                        if hexdata[i:i + len(ret)] == ret: #if it finds a ret instruction in hex (c3) it gets in the if
+                            # takes the bytes before c3, depending on the length specified
+                            gadget = hexdata[i-lengthHex: i+2]
+                            gadget = convertXCS(gadget)
+                            offset = 0
+                            # turns hex string extracted into disasCode to assembly instructions
+                            disasCode = md.disasm_lite(gadget, offset)
+                            strList = []
+                            out = False
+                            isUseful = False
+                            # appends the assembly instructions into strList,
+                            # one entry for one assembly instruction
+                            for (address, size, mnemonic, op_str) in disasCode:
+                                strList.append([address, mnemonic, op_str])
+                            #checks that the list is not empty and that the last instruction is a ret
+                            if strList and str(strList[-1][1]) == ('ret' or 'retq'):
+                                nbret += 1
+                                #checks that the instructions in strList (taking only the required number, cfr length)
+                                # are not contained inside the list of bad instructions, such as jumps, calls, etc
+                                #furthermore I added a check to get only the instructions I want and find precise gadgets
+                                for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
+                                    if str(a[1]) in badInstruct:
+                                        out = True
+                                    if str(a[1]) == 'pop' and str(a[2]) == 'rsi':
+                                        isUseful = True
+                                #prints the selected gadgets along with their address offset
+                                if not out and isUseful:
+                                    nbGadget += 1
+                                    print 'gadget at %x : \n' % (i)
+                                    for a in strList[len(strList) - nbInstru - 1:len(strList)]:
+                                        print ("%x      %s %s \n") % (a[0], a[1], a[2])
+                                    #print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
+                                    #print '%s' % ' \n'.join(map(str, strList))
+                print nbGadget
+                print nbret
+
+ # for filename in sys.argv[4:]:
             #     length = (int(sys.argv[3])*2)+2
             #     r = getHexStreamsFromElfExecutableSections(filename)
             #     print "Found ", len(r), " executable sections:"
@@ -97,52 +153,3 @@ if __name__ == '__main__':
             #                         strList.append(("%s      %s %s \n") %(address,mnemonic, op_str))
             #                     if endRet == 'ret' :
             #                         print '%s' % ' \n'.join(map(str, strList))
-            nbret = 0
-            for filename in sys.argv[4:]:
-                lengthHex = (int(sys.argv[3])*30)+2
-                nbInstru = int(sys.argv[3])
-                nbGadget = 0
-
-                r = getHexStreamsFromElfExecutableSections(filename)
-                print "Found ", len(r), " executable sections:"
-                i = 0
-                for s in r:
-                    print "   ", i, ": ", s['name'], "0x", hex(s['addr']) #, s['hexStream']
-                    i += 1
-                    hexdata = s['hexStream']
-
-                    #Part to find ret instructions and extract gadget
-                    badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave', 'ret', 'retq']
-                    ret = 'c3'
-                    for i, _ in enumerate(hexdata):
-                        if hexdata[i:i + len(ret)] == ret:
-                            gadget = hexdata[i-lengthHex: i+2]
-                            gadget = convertXCS(gadget)
-                            offset = 0
-                            disasCode = md.disasm_lite(gadget, offset)
-                            strList = []
-                            out = False
-                            isUseful = False
-                            for (address, size, mnemonic, op_str) in disasCode:
-                                strList.append([address, mnemonic, op_str])
-                            #print str(strList[len(strList)-1][1])
-                            if strList and str(strList[-1][1]) == ('ret' or 'retq'):
-                                nbret += 1
-
-
-                                for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
-                                    if str(a[1]) in badInstruct:
-                                        out = True
-                                    if str(a[1]) == 'pop' and str(a[2]) == 'rsi':
-                                        isUseful = True
-                                if not out and isUseful:
-                                    nbGadget += 1
-                                    print 'gadget at %x : \n' % (i)
-                                    for a in strList[len(strList) - nbInstru - 1:len(strList)]:
-                                        print ("%x      %s %s \n") % (a[0], a[1], a[2])
-                                    #print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
-                                    #print '%s' % ' \n'.join(map(str, strList))
-                print nbGadget
-                print nbret
-
-

