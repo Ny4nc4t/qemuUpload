@@ -89,7 +89,7 @@ if __name__ == '__main__':
                     for i, _ in enumerate(hexdata): #loops through hex string
                         #TODO the problem might be here. Splitting arbitrarily hex string might result into wrong
                         #assembly instructions and thus wrong gadgets
-                        if str(hexdata[i:i + len(ret)]) in ret: #if it finds a ret instruction in hex (c3) it gets in the if
+                        if str(hexdata[i:i + 2]) in ret: #if it finds a ret instruction in hex (c3) it gets in the if
                             # takes the bytes before c3, depending on the length specified
                             gadget = hexdata[i-lengthHex: i+2]
                             gadget = convertXCS(gadget)
