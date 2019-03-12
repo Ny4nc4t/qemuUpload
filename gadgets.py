@@ -100,7 +100,7 @@ if __name__ == '__main__':
                             disasCode = md.disasm_lite(gadget, offset)
                             strList = []
                             out = False
-                            isUseful = False
+                            isUseless = True
                             # appends the assembly instructions into strList,
                             # one entry for one assembly instruction
                             for (address, size, mnemonic, op_str) in disasCode:
@@ -113,10 +113,10 @@ if __name__ == '__main__':
                                 for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
                                     if str(a[1]) in badInstruct:
                                         out = True
-                                    if str(a[1]) == 'pop' and str(a[2]) == 'rsi':
-                                        isUseful = True
+                                    # if str(a[1]) == 'pop' and str(a[2]) == 'rsi':
+                                    #     isUseless = False
                                 #prints the selected gadgets along with their address offset
-                                if not out and isUseful:
+                                if not out and not isUseless:
                                     nbGadget += 1
                                     print 'gadget at %x : \n' % (i)
                                     for a in strList[len(strList) - nbInstru - 1:len(strList)]:
