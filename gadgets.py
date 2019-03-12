@@ -71,7 +71,7 @@ if __name__ == '__main__':
             md = Cs(CS_ARCH_X86, CS_MODE_64)
             nbret = 0
             for filename in sys.argv[4:]:
-                lengthHex = (int(sys.argv[3])*30)+2
+                lengthHex = (int(sys.argv[3])*30)
                 nbInstru = int(sys.argv[3])
                 nbGadget = 0
 
@@ -91,14 +91,14 @@ if __name__ == '__main__':
                         #assembly instructions and thus wrong gadgets
                         if str(hexdata[i:i + 2]) in ret: #if it finds a ret instruction in hex (c3) it gets in the if
                             # takes the bytes before c3, depending on the length specified
-                            gadget = hexdata[i-lengthHex: i]
+                            gadget = hexdata[i-lengthHex: i+2]
+
                             gadget = convertXCS(gadget)
                             offset = 0
                             #counts number of return functions discovered
                             nbret += 1
                             # turns hex string extracted into disasCode to assembly instructions
                             disasCode = md.disasm_lite(gadget, offset)
-                            # disasCode.append([md.disasm_lite(convertXCS(hexdata[i:i+2]), offset)])
                             strList = []
                             out = False
                             isUseless = True
@@ -106,8 +106,6 @@ if __name__ == '__main__':
                             # one entry for one assembly instruction
                             for (address, size, mnemonic, op_str) in disasCode:
                                 strList.append([address, mnemonic, op_str])
-                            for (address, size, mnemonic, op_str) in md.disasm_lite(convertXCS(hexdata[i:i+2]), offset):
-                                strList.append(([address, mnemonic, op_str]))
                             #checks that the list is not empty and that the last instruction is a ret
                             if strList and str(strList[-1][1]) == ('ret' or 'retq' or 'retf' or 'retn'):
                                 #checks that the instructions in strList (taking only the required number, cfr length)
@@ -123,7 +121,7 @@ if __name__ == '__main__':
                                 #prints the selected gadgets along with their address offset
                                 if not out and isUseless:
                                     nbGadget += 1
-                                    print 'gadget at %s : \n' % hex(int('0x'+ str(strList[len(strList) - nbInstru - 1][0]),16) + int(hex(s['addr']),16))
+                                    print 'gadget at %x : \n' % (i)
                                     for a in strList[len(strList) - nbInstru - 1:len(strList)]:
                                         print ("%x      %s %s \n") % (a[0], a[1], a[2])
                                     #print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
