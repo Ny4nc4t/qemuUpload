@@ -91,13 +91,14 @@ if __name__ == '__main__':
                         #assembly instructions and thus wrong gadgets
                         if str(hexdata[i:i + 2]) in ret: #if it finds a ret instruction in hex (c3) it gets in the if
                             # takes the bytes before c3, depending on the length specified
-                            gadget = hexdata[i-lengthHex: i+2]
+                            gadget = hexdata[i-lengthHex: i]
                             gadget = convertXCS(gadget)
                             offset = 0
                             #counts number of return functions discovered
                             nbret += 1
                             # turns hex string extracted into disasCode to assembly instructions
                             disasCode = md.disasm_lite(gadget, offset)
+                            disasCode.append(md.disasm_lite(convertXCS(hexdata[i:i+2])),offset)
                             strList = []
                             out = False
                             isUseless = True
