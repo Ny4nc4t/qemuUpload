@@ -97,8 +97,8 @@ if __name__ == '__main__':
                             #counts number of return functions discovered
                             nbret += 1
                             # turns hex string extracted into disasCode to assembly instructions
-                            disasCode = [md.disasm_lite(gadget, offset)]
-                            disasCode.append([md.disasm_lite(convertXCS(hexdata[i:i+2]), offset)])
+                            disasCode = md.disasm_lite(gadget, offset)
+                            # disasCode.append([md.disasm_lite(convertXCS(hexdata[i:i+2]), offset)])
                             strList = []
                             out = False
                             isUseless = True
@@ -106,6 +106,8 @@ if __name__ == '__main__':
                             # one entry for one assembly instruction
                             for (address, size, mnemonic, op_str) in disasCode:
                                 strList.append([address, mnemonic, op_str])
+                            for (address, size, mnemonic, op_str) in md.disasm_lite(convertXCS(hexdata[i:i+2]), offset):
+                                strList.append(([address, mnemonic, op_str]))
                             #checks that the list is not empty and that the last instruction is a ret
                             if strList and str(strList[-1][1]) == ('ret' or 'retq' or 'retf' or 'retn'):
                                 #checks that the instructions in strList (taking only the required number, cfr length)
