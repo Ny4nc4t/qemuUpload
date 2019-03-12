@@ -34,7 +34,7 @@ def getHexStreamsFromElfExecutableSections(filename):
         elffile = ELFFile(f)
         
         execSections = []
-        goodSections = [".text", ".interp", ".note.ABI-tag", ".note.gnu.build-id", ".gnu.hash", ".hash", ".dynsym", ".dynstr", ".gnu.version", ".gnu.version_r", ".rela.dyn", ".rela.plt", ".init", ".plt", ".text", ".fini", ".rodata", ".eh_frame_hdr", ".eh_frame"]
+        goodSections = [".text"]#, ".interp", ".note.ABI-tag", ".note.gnu.build-id", ".gnu.hash", ".hash", ".dynsym", ".dynstr", ".gnu.version", ".gnu.version_r", ".rela.dyn", ".rela.plt", ".init", ".plt", ".text", ".fini", ".rodata", ".eh_frame_hdr", ".eh_frame"]
         checkedSections = [".init", ".plt", ".text", ".fini"]
         
         for nsec, section in enumerate(elffile.iter_sections()):
