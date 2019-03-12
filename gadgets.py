@@ -106,17 +106,19 @@ if __name__ == '__main__':
                             for (address, size, mnemonic, op_str) in disasCode:
                                 strList.append([address, mnemonic, op_str])
                             #checks that the list is not empty and that the last instruction is a ret
-                            if strList :# and str(strList[-1][1]) == ('ret' or 'retq'):
+                            if strList and str(strList[-1][1]) == ('ret' or 'retq'):
                                 #checks that the instructions in strList (taking only the required number, cfr length)
                                 # are not contained inside the list of bad instructions, such as jumps, calls, etc
                                 #furthermore I added a check to get only the instructions I want and find precise gadgets
                                 for a in strList[len(strList)-nbInstru-1:len(strList)-1]:
                                     if str(a[1]) in badInstruct:
                                         out = True
+
+                                    #uncomment and modify the following two lines to enable specific gadget search
                                     # if str(a[1]) == 'pop' and str(a[2]) == 'rsi':
                                     #     isUseless = False
                                 #prints the selected gadgets along with their address offset
-                                if not out and not isUseless:
+                                if not out and isUseless:
                                     nbGadget += 1
                                     print 'gadget at %x : \n' % (i)
                                     for a in strList[len(strList) - nbInstru - 1:len(strList)]:
