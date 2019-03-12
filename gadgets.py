@@ -97,8 +97,8 @@ if __name__ == '__main__':
                             #counts number of return functions discovered
                             nbret += 1
                             # turns hex string extracted into disasCode to assembly instructions
-                            disasCode = md.disasm_lite(gadget, offset)
-                            disasCode.append(md.disasm_lite(convertXCS(hexdata[i:i+2])),offset)
+                            disasCode = md.disasm_lite(gadget, offset) + md.disasm_lite(convertXCS(hexdata[i:i+2]), offset)
+                            # disasCode.append(md.disasm_lite(convertXCS(hexdata[i:i+2])),offset)
                             strList = []
                             out = False
                             isUseless = True
