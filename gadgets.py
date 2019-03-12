@@ -85,11 +85,11 @@ if __name__ == '__main__':
 
                     #Part to find ret instructions and extract gadget
                     badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave', 'ret', 'retq']
-                    ret = 'c3'
+                    ret = ['c3', 'cb', 'c2', 'ca']
                     for i, _ in enumerate(hexdata): #loops through hex string
                         #TODO the problem might be here. Splitting arbitrarily hex string might result into wrong
                         #assembly instructions and thus wrong gadgets
-                        if hexdata[i:i + len(ret)] == ret: #if it finds a ret instruction in hex (c3) it gets in the if
+                        if hexdata[i:i + len(ret)] in ret: #if it finds a ret instruction in hex (c3) it gets in the if
                             # takes the bytes before c3, depending on the length specified
                             gadget = hexdata[i-lengthHex: i+2]
                             gadget = convertXCS(gadget)
