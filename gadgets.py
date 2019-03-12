@@ -121,7 +121,7 @@ if __name__ == '__main__':
                                 #prints the selected gadgets along with their address offset
                                 if not out and isUseless:
                                     nbGadget += 1
-                                    print 'gadget at %x : \n' % (i)
+                                    print 'gadget at %x : \n' % (i-lengthHex+ strList[len(strList) - nbInstru - 1][0])
                                     for a in strList[len(strList) - nbInstru - 1:len(strList)]:
                                         print ("%x      %s %s \n") % (a[0], a[1], a[2])
                                     #print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
