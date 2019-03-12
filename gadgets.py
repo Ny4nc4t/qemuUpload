@@ -94,6 +94,8 @@ if __name__ == '__main__':
                             gadget = hexdata[i-lengthHex: i+2]
                             gadget = convertXCS(gadget)
                             offset = 0
+                            #counts number of return functions discovered
+                            nbret += 1
                             # turns hex string extracted into disasCode to assembly instructions
                             disasCode = md.disasm_lite(gadget, offset)
                             strList = []
@@ -105,7 +107,6 @@ if __name__ == '__main__':
                                 strList.append([address, mnemonic, op_str])
                             #checks that the list is not empty and that the last instruction is a ret
                             if strList and str(strList[-1][1]) == ('ret' or 'retq'):
-                                nbret += 1
                                 #checks that the instructions in strList (taking only the required number, cfr length)
                                 # are not contained inside the list of bad instructions, such as jumps, calls, etc
                                 #furthermore I added a check to get only the instructions I want and find precise gadgets

