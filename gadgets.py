@@ -123,7 +123,7 @@ if __name__ == '__main__':
                                     # if str(a[1]) == 'pop' and str(a[2]) == 'rsi':
                                     #     isUseless = False
                                 # prints the selected gadgets along with their address offset
-                                if out and isUseless:
+                                if not out and isUseless:
                                     nbGadget += 1
                                     # print 'gadget at %x : \n' % (i- lengthHex + int(strList[0][0])+ int(strList[len(strList) - nbInstru - 1][0]))
                                     for a in nStrList:
