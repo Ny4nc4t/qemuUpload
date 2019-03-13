@@ -21,3 +21,72 @@ e      ret
 
 2
 10
+Processing file: hexdump
+Found  1  executable sections:
+    0 :  .text 0x 0x4006b0
+0055482d781060004883f80e4889e5761bb8000000004885c074115dbf78106000ffe0660f1f8400000000005dc3
+4
+21      jmp rax 
+
+23      nop word ptr [rax + rax] 
+
+2c      pop rbp 
+
+2d      ret  
+
+0048c1fe034889e54889f048c1e83f4801c648d1fe7415b8000000004885c0740b5dbf78106000ffe00f1f005dc3
+4
+27      jmp rax 
+
+29      nop dword ptr [rax] 
+
+2c      pop rbp 
+
+2d      ret  
+
+bf78106000ffe00f1f005dc3660f1f440000803d11092000007511554889e5e86effffff5dc605fe08200001f3c3
+4
+1f      call 0xffffffffffffff92 
+
+24      pop rbp 
+
+25      mov byte ptr [rip + 0x2008fe], 1 
+
+2c      ret  
+
+0bf180e600048833f007505eb930f1f00b8000000004885c074f1554889e5ffd05de97affffff554889e54881ec2
+85c0750abf0a000000e82bfdffff488345f80148817df8e70300007696bf0a000000e812fdffffb800000000c9c3
+4
+22      call 0xfffffffffffffd39 
+
+27      mov eax, 0 
+
+2c      leave  
+
+2d      ret  
+
+13488d3dc7000000e8fafcffffb8ffffffffeb18488b45f04883c008488b004889c7e866feffffb800000000c9c3
+4
+22      call 0xfffffffffffffe8d 
+
+27      mov eax, 0 
+
+2c      leave  
+
+2d      ret  
+
+0c9c3660f1f840000000000415741564189ff415541544c8d25a604200055488d2da6042000534989f64989d54c2
+29e54883ec0848c1fd03e85ffcffff4885ed742031db0f1f8400000000004c89ea4c89f64489ff41ff14dc4883c3
+db0f1f8400000000004c89ea4c89f64489ff41ff14dc4883c3014839dd75ea4883c4085b5d415c415d415e415fc3
+89f64489ff41ff14dc4883c3014839dd75ea4883c4085b5d415c415d415e415fc390662e0f1f840000000000f3c3
+4
+20      ret  
+
+21      nop  
+
+22      nop word ptr cs:[rax + rax] 
+
+2c      ret  
+
+6
+10
