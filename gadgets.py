@@ -112,9 +112,9 @@ if __name__ == '__main__':
                                 # are not contained inside the list of bad instructions, such as jumps, calls, etc
                                 # furthermore I added a check to get only the instructions I want and find precise gadgets
 
-                                strList = strList[len(strList)-nbInstru-1:]
+                                nStrList = strList[len(strList)-nbInstru-1:]
                                 for a in range(0,nbInstru):
-                                    if str(strList[a][1]) in badInstruct:
+                                    if str(nStrList[a][1]) in badInstruct:
                                         out = True
 
                                     # uncomment and modify the following two lines to enable specific gadget search
@@ -124,7 +124,7 @@ if __name__ == '__main__':
                                 if not out and isUseless:
                                     nbGadget += 1
                                     # print 'gadget at %x : \n' % (i- lengthHex + int(strList[0][0])+ int(strList[len(strList) - nbInstru - 1][0]))
-                                    for a in strList:
+                                    for a in nStrList:
                                         print ("%x      %s %s \n") % (a[0], a[1], a[2])
                                     # print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
                                     # print '%s' % ' \n'.join(map(str, strList))
