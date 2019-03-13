@@ -87,7 +87,7 @@ if __name__ == '__main__':
                     badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave', 'ret', 'retq', 'retf', 'retn']
                     ret = ['c3', 'cb', 'c2', 'ca']
                     for i, _ in enumerate(hexdata):
-                        if str(hexdata[i:i + len(ret)]) in ret:
+                        if str(hexdata[i:i + 2]) in ret:
                             gadget = hexdata[i - lengthHex: i + 2]
                             gadget = convertXCS(gadget)
                             offset = 0
