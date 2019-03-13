@@ -107,11 +107,13 @@ if __name__ == '__main__':
                             for (address, size, mnemonic, op_str) in disasCode:
                                 strList.append([address, mnemonic, op_str])
                             # checks that the list is not empty and that the last instruction is a ret
-                            if strList and str(strList[-1][1]) == ('ret' or 'retq' or 'retf' or 'retn'):
+                            if strList and (str(strList[-1][1]) or str(strList[-1][2]) == ('ret' or 'retq' or 'retf' or 'retn')):
                                 # checks that the instructions in strList (taking only the required number, cfr length)
                                 # are not contained inside the list of bad instructions, such as jumps, calls, etc
                                 # furthermore I added a check to get only the instructions I want and find precise gadgets
-                                for a in strList[len(strList) - nbInstru - 1:len(strList) - 1]:
+
+                                strList = strList[len(strList)-nbInstru-1:]
+                                for a in strList[:nbInstru]:
                                     if str(a[1]) in badInstruct:
                                         out = True
 
