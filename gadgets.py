@@ -99,7 +99,6 @@ if __name__ == '__main__':
                             nbret += 1
                             # turns hex string extracted into disasCode to assembly instructions
                             disasCode = md.disasm_lite(gadget, offset)
-                            print disasCode
                             strList = []
                             out = False
                             isUseless = True
