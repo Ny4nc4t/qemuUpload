@@ -84,16 +84,17 @@ if __name__ == '__main__':
                     hexdata = s['hexStream']
 
                     #Part to find ret instructions and extract gadget
-                    badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave', 'ret', 'retq']
+                    badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave', 'ret', 'retq', 'retf', 'retn']
                     ret = ['c3', 'cb', 'c2', 'ca']
                     for i, _ in enumerate(hexdata): #loops through hex string
                         #TODO the problem might be here. Splitting arbitrarily hex string might result into wrong
                         #assembly instructions and thus wrong gadgets
-                        if str(hexdata[i:i + 2]) in ret: #if it finds a ret instruction in hex (c3) it gets in the if
-                            # takes the bytes before c3, depending on the length specified
+                        if str(hexdata[i:i + 2]) in ret: #if it finds a ret instruction in hex it gets in the if
+                            # takes the bytes before ret, depending on the length specified
                             gadget = hexdata[i-lengthHex: i+2]
 
                             gadget = convertXCS(gadget)
+                            print gadget
                             offset = 0
                             #counts number of return functions discovered
                             nbret += 1
