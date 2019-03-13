@@ -85,7 +85,7 @@ if __name__ == '__main__':
 
                     #Part to find ret instructions and extract gadget
                     badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave', 'ret', 'retq', 'retf', 'retn']
-                    ret = ['c3'] #'c2' and 'ca' are also return op codes but require an address afterwards so are not interesting for the purpose of this program
+                    ret = ['c3', 'cb'] #'c2' and 'ca' are also return op codes but require an address afterwards so are not interesting for the purpose of this program
                     for i, _ in enumerate(hexdata):  # loops through hex string
                         # TODO the problem might be here. Splitting arbitrarily hex string might result into wrong
                         # assembly instructions and thus wrong gadgets
@@ -108,6 +108,8 @@ if __name__ == '__main__':
                                 strList.append([address, mnemonic, op_str])
                             #print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
                             # checks that the list is not empty and that the last instruction is a ret
+                            if not strList:
+                                print "Empty"
                             if strList and (str(strList[-1][1]) == ('ret' or 'retq' or 'retf' or 'retn')):
                                 # checks that the instructions in strList (taking only the required number, cfr length)
                                 # are not contained inside the list of bad instructions, such as jumps, calls, etc
@@ -123,7 +125,7 @@ if __name__ == '__main__':
                                     # if str(a[1]) == 'pop' and str(a[2]) == 'rsi':
                                     #     isUseless = False
                                 # prints the selected gadgets along with their address offset
-                                if not out and isUseless:
+                                if not out:# and isUseless:
                                     nbGadget += 1
                                     # print 'gadget at %x : \n' % (i- lengthHex + int(strList[0][0])+ int(strList[len(strList) - nbInstru - 1][0]))
                                     for a in nStrList:
