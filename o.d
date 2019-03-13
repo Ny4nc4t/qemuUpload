@@ -1,0 +1,23 @@
+Processing file: hexdump
+Found  1  executable sections:
+    0 :  .text 0x 0x4006b0
+106000ffe0660f1f8400000000005dc3
+e      pop rbp 
+
+f      ret  
+
+c0740b5dbf78106000ffe00f1f005dc3
+e5e86effffff5dc605fe08200001f3c3
+5ffd05de97affffff554889e54881ec2
+0a000000e812fdffffb800000000c9c3
+004889c7e866feffffb800000000c9c3
+5488d2da6042000534989f64989d54c2
+4c89ea4c89f64489ff41ff14dc4883c3
+ea4883c4085b5d415c415d415e415fc3
+415fc390662e0f1f840000000000f3c3
+4      nop word ptr cs:[rax + rax] 
+
+e      ret  
+
+2
+10
