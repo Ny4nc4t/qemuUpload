@@ -92,7 +92,7 @@ if __name__ == '__main__':
                         if str(hexdata[i:i + 2]) in ret:  # if it finds a ret instruction in hex it gets in the if
                             # takes the bytes before ret, depending on the length specified
                             gadget = hexdata[i - lengthHex: i + 2]
-
+                            print gadget
                             gadget = convertXCS(gadget)
                             offset = 0
                             # counts number of return functions discovered
