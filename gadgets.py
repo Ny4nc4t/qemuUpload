@@ -109,12 +109,12 @@ if __name__ == '__main__':
                             #print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
                             # checks that the list is not empty and that the last instruction is a ret
                             if strList and (str(strList[-1][1]) == ('ret' or 'retq' or 'retf' or 'retn')):
-                                print str(strList[-1][1])
                                 # checks that the instructions in strList (taking only the required number, cfr length)
                                 # are not contained inside the list of bad instructions, such as jumps, calls, etc
                                 # furthermore I added a check to get only the instructions I want and find precise gadgets
 
                                 nStrList = strList[len(strList)-nbInstru-1:]
+                                print len(nStrList)
                                 for a in range(0,nbInstru):
                                     if str(nStrList[a][1]) in badInstruct:
                                         out = True
