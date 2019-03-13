@@ -111,7 +111,7 @@ if __name__ == '__main__':
                             # checks that the list is not empty and that the last instruction is a ret
                             if strList:
                                 print str(strList[-1][1])
-                            if strList and (str(strList[-1][1]) == ('ret' or 'retq' or 'retf' or 'retn')):
+                            if strList:# and (str(strList[-1][1]) == ('ret' or 'retq' or 'retf' or 'retn')):
                                 # checks that the instructions in strList (taking only the required number, cfr length)
                                 # are not contained inside the list of bad instructions, such as jumps, calls, etc
                                 # furthermore I added a check to get only the instructions I want and find precise gadgets
