@@ -114,7 +114,7 @@ if __name__ == '__main__':
 
                                 strList = strList[len(strList)-nbInstru-1:]
                                 for a in range(0,nbInstru):
-                                    if str(a[1]) in badInstruct:
+                                    if str(strList[a][1]) in badInstruct:
                                         out = True
 
                                     # uncomment and modify the following two lines to enable specific gadget search
