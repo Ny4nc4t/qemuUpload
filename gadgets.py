@@ -93,7 +93,7 @@ if __name__ == '__main__':
                             # takes the bytes before ret, depending on the length specified
                             gadget = hexdata[i - lengthHex: i + 2]
                             print gadget
-                            gadget = convertXCS(gadget)
+                            #gadget = convertXCS(gadget)
                             offset = 0
                             # counts number of return functions discovered
                             nbret += 1
