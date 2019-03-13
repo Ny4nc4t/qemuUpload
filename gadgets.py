@@ -94,12 +94,12 @@ if __name__ == '__main__':
                             gadget = hexdata[i - lengthHex: i + 2]
                             print gadget
                             gadget = convertXCS(gadget)
-                            print gadget
                             offset = 0
                             # counts number of return functions discovered
                             nbret += 1
                             # turns hex string extracted into disasCode to assembly instructions
                             disasCode = md.disasm_lite(gadget, offset)
+                            print disasCode
                             strList = []
                             out = False
                             isUseless = True
