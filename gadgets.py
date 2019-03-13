@@ -113,7 +113,7 @@ if __name__ == '__main__':
                                 # furthermore I added a check to get only the instructions I want and find precise gadgets
 
                                 strList = strList[len(strList)-nbInstru-1:]
-                                for a in strList[:nbInstru]:
+                                for a in range(0,nbInstru):
                                     if str(a[1]) in badInstruct:
                                         out = True
 
