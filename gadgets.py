@@ -94,7 +94,7 @@ if __name__ == '__main__':
                             gadget = hexdata[i-lengthHex: i+2]
 
                             gadget = convertXCS(gadget)
-                            print gadget
+                            print "%x" %gadget
                             offset = 0
                             #counts number of return functions discovered
                             nbret += 1
