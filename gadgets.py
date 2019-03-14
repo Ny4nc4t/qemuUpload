@@ -107,7 +107,7 @@ if __name__ == '__main__':
                                         out = True
 
                                 if strList and (str(strList[-1][1]) == ('ret' or 'retq' or 'retf' or 'retn')) and not out and len(strList) == nbInstru+1:
-                                    print 'gadget at %x : \n' % (int(s['addr'],16)+a)
+                                    print 'gadget at %x : \n' % (int(hex(s['addr']),16)+a)
                                     for instru in strList:
                                             print ("%x      %s %s \n") % (instru[0], instru[1], instru[2])
                                     out = True
