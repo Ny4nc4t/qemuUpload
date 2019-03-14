@@ -84,7 +84,7 @@ if __name__ == '__main__':
                     hexdata = s['hexStream']
 
                     #Part to find ret instructions and extract gadget
-                    badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave', 'ret', 'retq', 'retf', 'retn']
+                    badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave']#, 'ret', 'retq', 'retf', 'retn']
                     ret = ['c3', 'cb'] #'c2' and 'ca' are also return op codes but require an address afterwards so are not interesting for the purpose of this program
                     for i, _ in enumerate(hexdata):  # loops through hex string
                         # TODO the problem might be here. Splitting arbitrarily hex string might result into wrong
@@ -93,7 +93,7 @@ if __name__ == '__main__':
                             out = False
                             nbret += 1
 
-                            a = i
+                            a = i-2
                             while a >= i-lengthHex and not out:
                                 print 2
                                 gadget = hexdata[a: i + 2]
