@@ -112,7 +112,7 @@ if __name__ == '__main__':
 
 
                             for a in range(len(instList)-int(sys.argv[3])-1,len(instList)-1): 
-                                print 2
+
                                 if instList and str(instList[a][0]) in badInstruct:
                                     print ("mauvais  %s \n") % (mnemonic)
                                     flag = 0
