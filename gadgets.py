@@ -94,7 +94,7 @@ if __name__ == '__main__':
                             nbret += 1
                             if not out:
                                 print 1
-                                for a in reversed(range(i-(nbInstru*2), i-lengthHex)):
+                                for a in reversed(range(i, i-lengthHex,2)):
                                     print 2
                                     gadget = hexdata[a: i + 2]
                                     print gadget
