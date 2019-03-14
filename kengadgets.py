@@ -70,9 +70,9 @@ if __name__ == '__main__':
 
         if sys.argv[2] == '-length':#I check if there is -length argument
 
-            branInst = ["jmp", "je", "jz","jne","jnz","jg","jnle","jge","jnl","jl","jnge","jle","jng", "ja","jnbe","jnae","jxcz","jc","jnc"
-                        , "jo","jno","jp","jpe","jnp","jpo","js","jns", "call", "callq", "ret", "retq"]
-
+            # branInst = ["jmp", "je", "jz","jne","jnz","jg","jnle","jge","jnl","jl","jnge","jle","jng", "ja","jnbe","jnae","jxcz","jc","jnc"
+            #             , "jo","jno","jp","jpe","jnp","jpo","js","jns", "call", "callq", "ret", "retq"]
+            badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave']
             retHex = ['c3','cb']
             count = 0
             md = Cs(CS_ARCH_X86, CS_MODE_64)
@@ -113,7 +113,7 @@ if __name__ == '__main__':
 
                             for a in range(len(instList)-int(sys.argv[3])-1,len(instList)-1): 
                                 print 2
-                                if instList and str(instList[a][0]) in branInst:
+                                if instList and str(instList[a][0]) in badInstruct:
                                     print ("mauvais  %s \n") % (mnemonic)
                                     flag = 0
 
