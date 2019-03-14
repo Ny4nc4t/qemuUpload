@@ -103,12 +103,16 @@ if __name__ == '__main__':
                                 disasCode = md.disasm_lite(gadget, offset)
                                 strList = []
                                 for (address, size, mnemonic, op_str) in disasCode:
+                                    print 3
                                     if str(mnemonic) not in badInstruct :
+                                        print 4
                                         strList.append([address, mnemonic, op_str])
                                     else:
+                                        print 5
                                         out = True
 
                                 if strList and (str(strList[-1][1]) == ('ret' or 'retq' or 'retf' or 'retn')) and not out and len(strList) == nbInstru+1:
+                                    print 6
                                     for a in strList:
                                             print ("%x      %s %s \n") % (a[0], a[1], a[2])
                                     out = True
