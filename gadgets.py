@@ -95,10 +95,10 @@ if __name__ == '__main__':
 
                             a = i-2
                             while a >= i-lengthHex and not out:
-                                a += 2
                                 print 2
                                 gadget = hexdata[a: i + 2]
                                 print gadget
+                                a -= 2
                                 gadget = convertXCS(gadget)
                                 offset = 0
                                 disasCode = md.disasm_lite(gadget, offset)
