@@ -93,7 +93,9 @@ if __name__ == '__main__':
                             out = False
                             nbret += 1
                             if not out:
+                                print 1
                                 for a in reversed(range(i-(nbInstru*2), i-lengthHex,2)):
+                                    print 2
                                     gadget = hexdata[a: i + 2]
                                     print gadget
                                     gadget = convertXCS(gadget)
