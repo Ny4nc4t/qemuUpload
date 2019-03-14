@@ -86,9 +86,6 @@ if __name__ == '__main__':
                     i += 1
 
                     hexdata = s['hexStream']
-                    #gadget = hexdata[0: int(sys.argv[3]) * 2]  # gadget = hexdata[0 : 30]. Ici on multiplie par 2 le length
-                    #gadget = convertXCS(gadget)
-                    #offset = 0
 
                     for j, _ in enumerate(hexdata):
 
@@ -99,43 +96,32 @@ if __name__ == '__main__':
 
                             gadget = hexdata[j - (int(sys.argv[3])* 2 * 15 ) : j + 2]  # gadget = hexdata[0 : 30]. Ici on multiplie par 2 le length
 
-                            print (gadget)
+                            #print (gadget)
 
                             gadget = convertXCS(gadget)
 
-
                             offset = 0
-                            #print str(hexdata[i:i + 2])
-                            #print ("\n")
 
-                            """gadget2 = hexdata[i - (int(
-                                sys.argv[3]) * 2): i]  # gadget = hexdata[0 : 30]. Ici on multiplie par 2 le length
-                            gadget2 = convertXCS(gadget2)
+                            instList = []
+                            disassCode = md.disasm_lite(gadget, offset)
 
-                            disassCode = md.disasm_lite(gadget2, offset)
-                            strList = []
+
                             for (address, size, mnemonic, op_str) in disassCode:
-                                strList.append([address, mnemonic, op_str])
-                            print len(strList)
-                            for fn in strList:
-                                if fn[1] in branInst:
-                                    #print ("flag %s" % fn[1])
-                                    flag = 0"""
+                                instList.append([mnemonic, op_str])
+                                #print ("  %s \n")% (mnemonic)
 
 
-                            if flag == 1:
+                            for ( mnemonic, op_str) in instList[- int(sys.argv[3])-1: -1]:
+                                if mnemonic in branInst:
+                                    print ("mauvais  %s \n") % (mnemonic)
+                                    flag = 0
 
-                                instList = []
-                                disassCode = md.disasm_lite(gadget, offset)
-                                for (address, size, mnemonic, op_str) in disassCode:
-                                    instList.append([mnemonic, op_str])
-                                    #print ("  %s \n")% (mnemonic)
 
-                                print ("gadget:\n")
-                                #sizeb = 0
 
-                                for ( mnemonic, op_str) in instList:
+                            if instList and str(instList[-1][0]) == ('ret') and flag == 1:
 
+                                print "gadget: \n"
+                                for ( mnemonic, op_str) in instList[- int(sys.argv[3])-1:]:#J 'affiche length -1 dernier valeur
                                     print ("  %s %s \n") % (mnemonic, op_str)
 
 
