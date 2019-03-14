@@ -95,6 +95,7 @@ if __name__ == '__main__':
 
                             a = i-2
                             while a >= i-lengthHex and not out:
+                                a += 2
                                 print 2
                                 gadget = hexdata[a: i + 2]
                                 print gadget
@@ -117,8 +118,7 @@ if __name__ == '__main__':
                                             print ("%x      %s %s \n") % (a[0], a[1], a[2])
                                     out = True
                                     nbGadget += 1
-                                a+=1
-                                a+=1
+
 
 
                             # takes the bytes before ret, depending on the length specified
