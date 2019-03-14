@@ -70,9 +70,9 @@ if __name__ == '__main__':
 
         if sys.argv[2] == '-length':#I check if there is -length argument
 
-            # branInst = ["jmp", "je", "jz","jne","jnz","jg","jnle","jge","jnl","jl","jnge","jle","jng", "ja","jnbe","jnae","jxcz","jc","jnc"
-            #             , "jo","jno","jp","jpe","jnp","jpo","js","jns", "call", "callq", "ret", "retq"]
-            badInstruct = ['jmp', 'jmpq', 'jne', 'js', 'jns','jg', 'jge', 'je', 'callq', 'call', 'jb', 'jbe','leave']
+            branInst = ["jmp", "je", "jz","jne","jnz","jg","jnle","jge","jnl","jl","jnge","jle","jng", "ja","jnbe","jnae","jxcz","jc","jnc"
+                        , "jo","jno","jp","jpe","jnp","jpo","js","jns", "call", "callq", "ret", "retq"]
+
             retHex = ['c3','cb']
             count = 0
             md = Cs(CS_ARCH_X86, CS_MODE_64)
@@ -111,15 +111,14 @@ if __name__ == '__main__':
                                 #print ("  %s \n")% (mnemonic)
 
 
-                            for a in range(len(instList)-int(sys.argv[3])-1,len(instList)-1): 
-
-                                if instList and str(instList[a][0]) in badInstruct:
+                            for ( mnemonic, op_str) in instList[- int(sys.argv[3])-1: -1]:
+                                if mnemonic in branInst:
                                     print ("mauvais  %s \n") % (mnemonic)
                                     flag = 0
 
 
 
-                            if instList and str(instList[-1:][0]) == ('ret') and flag == 1:
+                            if instList and str(instList[-1][0]) == ('ret') and flag == 1:
 
                                 print "gadget: \n"
                                 for ( mnemonic, op_str) in instList[- int(sys.argv[3])-1:]:#J 'affiche length -1 dernier valeur
