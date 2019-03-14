@@ -93,7 +93,7 @@ if __name__ == '__main__':
                             out = False
                             nbret += 1
 
-                            a = i-2
+                            a = int(i)-2
                             while a >= i-lengthHex and not out:
                                 print 2
                                 gadget = hexdata[a: i + 2]
