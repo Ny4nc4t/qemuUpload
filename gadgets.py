@@ -96,7 +96,6 @@ if __name__ == '__main__':
                             a = i-2
                             while a >= i-lengthHex and not out:
                                 gadget = hexdata[a: i + 2]
-                                strhex = gadget
                                 gadget = convertXCS(gadget)
                                 offset = 0
                                 disasCode = md.disasm_lite(gadget, offset)
@@ -109,7 +108,6 @@ if __name__ == '__main__':
 
                                 if strList and (str(strList[-1][1]) == ('ret' or 'retq' or 'retf' or 'retn')) and not out and len(strList) == nbInstru+1:
                                     print 'gadget at %x : \n' % (int(hex(s['addr']),16)+a)
-                                    print strhex 
                                     for instru in strList:
                                             print ("%x      %s %s \n") % (instru[0], instru[1], instru[2])
                                     out = True
