@@ -115,8 +115,8 @@ if __name__ == '__main__':
                                     out = True
                                     nbGadget += 1
                                 a -= 2
-    print nbGadget
-    print nbret
+                    print nbGadget
+                    print nbret
 
 
                             # takes the bytes before ret, depending on the length specified
