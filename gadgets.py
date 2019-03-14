@@ -90,48 +90,74 @@ if __name__ == '__main__':
                         # TODO the problem might be here. Splitting arbitrarily hex string might result into wrong
                         # assembly instructions and thus wrong gadgets
                         if str(hexdata[i:i + 2]) in ret:  # if it finds a ret instruction in hex it gets in the if
-                            # takes the bytes before ret, depending on the length specified
-                            gadget = hexdata[i - lengthHex: i + 2]
-                            print gadget
-                            gadget = convertXCS(gadget)
-                            offset = 0
-                            # counts number of return functions discovered
-                            nbret += 1
-                            # turns hex string extracted into disasCode to assembly instructions
-                            disasCode = md.disasm_lite(gadget, offset)
-                            strList = []
                             out = False
-                            isUseless = True
-                            # appends the assembly instructions into strList,
-                            # one entry for one assembly instruction
-                            for (address, size, mnemonic, op_str) in disasCode:
-                                strList.append([address, mnemonic, op_str])
-                            #print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
-                            # checks that the list is not empty and that the last instruction is a ret
-                            if strList:
-                                print str(strList[-1][1])
-                            if strList:# and (str(strList[-1][1]) == ('ret' or 'retq' or 'retf' or 'retn')):
-                                # checks that the instructions in strList (taking only the required number, cfr length)
-                                # are not contained inside the list of bad instructions, such as jumps, calls, etc
-                                # furthermore I added a check to get only the instructions I want and find precise gadgets
+                            nbret += 1
+                            if not out:
+                                for a in reversed(range(i-(nbInstru*2), i-lengthHex,2)):
+                                    gadget = hexdata[a: i + 2]
+                                    print gadget
+                                    gadget = convertXCS(gadget)
+                                    offset = 0
+                                    disasCode = md.disasm_lite(gadget, offset)
+                                    strList = []
+                                    for (address, size, mnemonic, op_str) in disasCode:
+                                        if str(mnemonic) not in badInstruct :
+                                            strList.append([address, mnemonic, op_str])
+                                        else:
+                                            out = True
 
-                                nStrList = strList[len(strList)-nbInstru-1:]
-                                print len(nStrList)
-                                for a in range(0,nbInstru):
-                                    if str(nStrList[a][1]) in badInstruct:
+                                    if strList and (str(strList[-1][1]) == ('ret' or 'retq' or 'retf' or 'retn')) and not out and len(strList) == nbInstru+1:
+                                        for a in strList:
+                                                print ("%x      %s %s \n") % (a[0], a[1], a[2])
                                         out = True
+                                        nbGadget += 1
 
-                                    # uncomment and modify the following two lines to enable specific gadget search
-                                    # if str(a[1]) == 'pop' and str(a[2]) == 'rsi':
-                                    #     isUseless = False
-                                # prints the selected gadgets along with their address offset
-                                if not out:# and isUseless:
-                                    nbGadget += 1
-                                    # print 'gadget at %x : \n' % (i- lengthHex + int(strList[0][0])+ int(strList[len(strList) - nbInstru - 1][0]))
-                                    for a in nStrList:
-                                        print ("%x      %s %s \n") % (a[0], a[1], a[2])
-                                    # print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
-                                    # print '%s' % ' \n'.join(map(str, strList))
+
+
+                            # takes the bytes before ret, depending on the length specified
+                            # gadget = hexdata[i - lengthHex: i + 2]
+                            # print gadget
+                            # gadget = convertXCS(gadget)
+                            # offset = 0
+                            # # counts number of return functions discovered
+                            # nbret += 1
+                            # # turns hex string extracted into disasCode to assembly instructions
+                            # disasCode = md.disasm_lite(gadget, offset)
+                            # strList = []
+                            # out = False
+                            # isUseless = True
+                            # # appends the assembly instructions into strList,
+                            # # one entry for one assembly instruction
+                            # for (address, size, mnemonic, op_str) in disasCode:
+                            #     strList.append([address, mnemonic, op_str])
+                            # #print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
+                            # # checks that the list is not empty and that the last instruction is a ret
+                            # if strList:
+                            #     print str(strList[-1][1])
+                            # if strList:# and (str(strList[-1][1]) == ('ret' or 'retq' or 'retf' or 'retn')):
+                            #     # checks that the instructions in strList (taking only the required number, cfr length)
+                            #     # are not contained inside the list of bad instructions, such as jumps, calls, etc
+                            #     # furthermore I added a check to get only the instructions I want and find precise gadgets
+                            #
+                            #     nStrList = strList[len(strList)-nbInstru-1:]
+                            #     print len(nStrList)
+                            #     for a in range(0,nbInstru):
+                            #         if str(nStrList[a][1]) in badInstruct:
+                            #             out = True
+                            #
+                            #         # uncomment and modify the following two lines to enable specific gadget search
+                            #         # if str(a[1]) == 'pop' and str(a[2]) == 'rsi':
+                            #         #     isUseless = False
+                            #     # prints the selected gadgets along with their address offset
+                            #     if not out:# and isUseless:
+                            #         nbGadget += 1
+                            #         # print 'gadget at %x : \n' % (i- lengthHex + int(strList[0][0])+ int(strList[len(strList) - nbInstru - 1][0]))
+                            #         for a in nStrList:
+                            #             print ("%x      %s %s \n") % (a[0], a[1], a[2])
+                            #         # print ("%x      %s %s \n") % (strList[-1][0], strList[-1][1], strList[-1][2])
+                            #         # print '%s' % ' \n'.join(map(str, strList))
+
+
                     print nbGadget
                     print nbret
 
