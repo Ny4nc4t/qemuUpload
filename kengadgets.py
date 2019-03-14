@@ -119,7 +119,7 @@ if __name__ == '__main__':
 
 
 
-                            if instList and str(instList[-1][0]) == ('ret') and flag == 1:
+                            if instList and str(instList[-1:][0]) == ('ret') and flag == 1:
 
                                 print "gadget: \n"
                                 for ( mnemonic, op_str) in instList[- int(sys.argv[3])-1:]:#J 'affiche length -1 dernier valeur
