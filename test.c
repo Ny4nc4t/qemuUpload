@@ -2,14 +2,14 @@
 #include <string.h>
 
 int lt(int x, int y) {
-	return x < y;
+	return x < y;	
 }
 int gt(int x, int y) {
 	return x > y;
 }
 
-int sort(int a[], int len, int (*f)(int, int) {
-	(f*)(a[len], a[len+1]);
+int sort(int a[], int len, int (*f)(int, int)) {
+	(*f)(a[len], a[len+1]);
 	return 0;
 }
 
