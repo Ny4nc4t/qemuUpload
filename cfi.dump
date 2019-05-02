@@ -188,7 +188,7 @@ Disassembly of section .text:
   4005bc:	48 83 c4 20          	add    $0x20,%rsp
   4005c0:	5d                   	pop    %rbp
   4005c1:	c3                   	retq   
-  4005c2:	66 66 66 66 66 2e 0f 	data16 data16 data16 data16 nopw %cs:0x0(%rax,%rax,1)
+  4005c2:	66 66 66 66 66 2e 0f 	data16 data16 data16 data16 nopw %cs:0x0(%rax,%rax,1
   4005c9:	1f 84 00 00 00 00 00 
 
 00000000004005d0 <main>:
