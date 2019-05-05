@@ -24,7 +24,17 @@ public class Main {
                 BadCast2 e = new BadCast2();
                 handleEx(e);
                 MethodType mt = MethodType.methodType(void.class, System.class);
-                MethodHandle mh = MethodHandles.lookup().findStatic(System.class, "setSecurityManager", mt);
+                try {
+       			File file = new File("myfile.txt");
+
+         		if(file.createNewFile())System.out.println("Success!");
+         		else System.out.println ("Error, file already exists.");
+      		}
+      		catch(IOException ioe) {
+         		System.out.println("error");
+         		ioe.printStackTrace();
+      		}	
+		//MethodHandle mh = MethodHandles.lookup().findStatic(System.class, "setSecurityManager", mt);
                 mh.invokeExact(System.class, null);
         }
 
