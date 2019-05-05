@@ -1,6 +1,7 @@
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
+import java.lang.System;
 
 public class Main {
         public static class BadCast1 extends Throwable{
@@ -8,7 +9,7 @@ public class Main {
         }
 
         public static class BadCast2 extends Throwable{
-                LookupMirror lm = new LookupMirror();
+                Mirror lm = new Mirror();
         }
 
         public static void throwEx() throws BadCast1{
