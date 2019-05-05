@@ -37,7 +37,7 @@ public class Main {
          		ioe.printStackTrace();
       		}	
 		//MethodHandle mh = MethodHandles.lookup().findStatic(System.class, "setSecurityManager", mt);
-                mh.invokeExact(System.class, null);
+//                mh.invokeExact(System.class, null);
         }
 
 }
