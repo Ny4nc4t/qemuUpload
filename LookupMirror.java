@@ -1,4 +1,4 @@
-public class Mirror{
+public class LookupMirror{
         Class<?> lookupClass;
         int allowedModes;
 
