@@ -25,11 +25,11 @@ public class Main {
         public static void main(String[] args) throws Throwable {
                 BadCast2 e = new BadCast2();
                 handleEx(e);
-                // MethodType metType = MethodType.methodType(void.class, System.class);
+                MethodType metType = MethodType.methodType(void.class);
                 // MethodType metType = MethodType.methodType(Object.class,Class.class, System.class);
 
                 // MethodHandle metHandle = MethodHandles.lookup().findStatic(System.class, "setSecurityManager", metType);
-                MethodHandle metHandle = MethodHandles.lookup().findStatic(System.class, "setSecurityManager", void.class);
+                MethodHandle metHandle = MethodHandles.lookup().findStatic(System.class, "setSecurityManager", metType);
              	metHandle.invokeExact(System.class, null);
 
                 try {
