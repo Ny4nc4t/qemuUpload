@@ -29,7 +29,7 @@ public class Main {
                 // MethodType metType = MethodType.methodType(Object.class,Class.class, System.class);
 
                 // MethodHandle metHandle = MethodHandles.lookup().findStatic(System.class, "setSecurityManager", metType);
-                MethodHandle metHandle = MethodHandles.lookup().findStatic(System.class, "setSecurityManager", metType);
+                MethodHandle metHandle = MethodHandles.lookup().findStatic(System.class, "setSomething", metType);
              	metHandle.invokeExact(System.class, null);
 
                 try {
