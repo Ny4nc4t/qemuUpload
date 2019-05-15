@@ -8,7 +8,8 @@ address+="\" -- "
 #address+="&p="
 #address+="\" or 1 --"
 #address+=" "
-wget -O index.html "`  echo $address ` "
+#wget -O index.html "`  echo $address ` "
+wget -q -O - "`  echo $address ` "
 
 #if wget  -q -O -  "`  echo $address ` " | grep -q 'cat.JPG'; then
 #	echo 'yeaaaaaah'
