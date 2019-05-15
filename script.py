@@ -6,7 +6,7 @@ bashCommand = "wget  -q -O - " + request
 #bashCommand = "echo 'hello' "
 subprocess.call(['wget','-q','-O -',request])
 #output, error = process.communicate()
-print output
-print error
-print bashCommand
+#print output
+#print error
+#print bashCommand
 
