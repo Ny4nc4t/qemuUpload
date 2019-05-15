@@ -10,7 +10,7 @@ address+="\" -- "
 #address+=" "
 #wget -O index.html "`  echo $address ` "
 
-if ./wget  -q -O -  "`  echo $address ` " | grep -q 'cat.JPG'; then
+if wget  -q -O -  "`  echo $address ` " | grep -q 'cat.JPG'; then
 	echo 'yeaaaaaah'
 fi	
 echo
