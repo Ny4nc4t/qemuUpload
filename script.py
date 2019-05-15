@@ -7,5 +7,6 @@ bashCommand = "wget  -q -O - " + request
 process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
 output, error = process.communicate()
 print output
+print error
 print bashCommand
 
