@@ -46,7 +46,7 @@ for row in xrange(46,47):
 					# print "found letter %s at position %d" %(listASCII[c],pos)
 					word += listASCII[c]
 					break
-			print pos + c		
+			print pos + c + listASCII[c]		
 		file.write(word)
 		file.write("     ")
 		
