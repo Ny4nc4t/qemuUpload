@@ -30,6 +30,7 @@ for x in xrange(0,128):
 	response = f.read()
 	if (response.find('cat.JPG')!=-1): 
 		print "found letter %s" %chr(x)
+		break
 
 f = urllib.urlopen(request)
 print "1" + f.geturl()
