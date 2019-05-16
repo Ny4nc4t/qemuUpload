@@ -1,6 +1,7 @@
 import subprocess
 import urllib
 import string
+import datetime
 from itertools import cycle
 
 
@@ -15,6 +16,7 @@ from itertools import cycle
 #print bashCommand
 
 file= open("logs.txt","w+")
+file.write('START : ' + str(datetime.datetime.now())+'\n')
 listASCII=string.printable
 iterator=cycle(['username','password'])
 for row in xrange(1,101):
@@ -45,7 +47,7 @@ for row in xrange(1,101):
 		file.write("     ")
 		
 	file.write("\n")
-	
+write('END : ' + str(datetime.datetime.now())+'\n')	
 file.close()		
 
 			
