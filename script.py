@@ -7,7 +7,7 @@ from itertools import cycle
 file= open("logs.txt","w+")
 file.write('START : ' + str(datetime.datetime.now())+'\n')
 iterator=cycle(['username','password'])
-
+file.write('ID' + "    "+ 'USERNAME' + "     "+ 'PASSWORD \n')
 ############### Loop to get the 100 rows of username/password tuple ##############################
 for row in xrange(1,101):
 	file.write(str(row) + "    ")
