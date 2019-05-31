@@ -6777,48 +6777,48 @@ int main(int argc,char **argv)
  //        setmmxoverlay(0);
 
 	editstatus = 1;
-	// if (argc >= 2)
-	// {
-	// 	strcpy(boardfilename,argv[1]);
-	// 	if (strchr(boardfilename,'.') == 0)
-	// 		strcat(boardfilename,".map");
-	// }
-	// else
-	// 	strcpy(boardfilename,"newboard.map");
+	if (argc >= 2)
+	{
+		strcpy(boardfilename,argv[1]);
+		if (strchr(boardfilename,'.') == 0)
+			strcat(boardfilename,".map");
+	}
+	else
+		strcpy(boardfilename,"newboard.map");
 
-	// ExtInit();
-	// _initkeys();
-	// inittimer();
+	ExtInit();
+	_initkeys();
+	inittimer();
 
-	// loadpics("tiles000.art");
-	// loadnames();
+	loadpics("tiles000.art");
+	loadnames();
 
-	// strcpy(kensig,"BUILD by Ken Silverman");
-	// initcrc();
+	strcpy(kensig,"BUILD by Ken Silverman");
+	initcrc();
 
-	// if (setgamemode(vidoption,xdim,ydim) < 0)
-	// {
-	// 	ExtUnInit();
-	// 	uninitkeys();
-	// 	uninittimer();
-	// 	printf("%ld * %ld not supported in this graphics mode\n",xdim,ydim);
-	// 	exit(0);
-	// }
+	if (setgamemode(vidoption,xdim,ydim) < 0)
+	{
+		ExtUnInit();
+		uninitkeys();
+		uninittimer();
+		printf("%ld * %ld not supported in this graphics mode\n",xdim,ydim);
+		exit(0);
+	}
 
 	k = 0;
-	// for(i=0;i<256;i++)
-	// {
-	// 	j = ((long)palette[i*3])+((long)palette[i*3+1])+((long)palette[i*3+2]);
-	// 	if (j > k) { k = j; whitecol = i; }
-	// }
+	for(i=0;i<256;i++)
+	{
+		j = ((long)palette[i*3])+((long)palette[i*3+1])+((long)palette[i*3+2]);
+		if (j > k) { k = j; whitecol = i; }
+	}
 
 	// initmenupaths(argv[0]);
 	menunamecnt = 0;
 	menuhighlight = 0;
 
-	// for(i=0;i<MAXSECTORS;i++) sector[i].extra = -1;
-	// for(i=0;i<MAXWALLS;i++) wall[i].extra = -1;
-	// for(i=0;i<MAXSPRITES;i++) sprite[i].extra = -1;
+	for(i=0;i<MAXSECTORS;i++) sector[i].extra = -1;
+	for(i=0;i<MAXWALLS;i++) wall[i].extra = -1;
+	for(i=0;i<MAXSPRITES;i++) sprite[i].extra = -1;
 
 	if (loadboard(boardfilename,&posx,&posy,&posz,&ang,&cursectnum) == -1)
 	{
@@ -6837,7 +6837,7 @@ int main(int argc,char **argv)
 	{
 		 ExtLoadMap(boardfilename);
 	}
-
+	return(0);
 	updatenumsprites();
 
 	startposx = posx;
