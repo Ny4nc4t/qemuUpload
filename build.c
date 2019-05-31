@@ -6781,6 +6781,7 @@ int main(int argc,char **argv)
 		if (strchr(boardfilename,'.') == 0)
 			strcat(boardfilename,".map");
 	
+	loadboard(boardfilename,&posx,&posy,&posz,&ang,&cursectnum);
 	// if (argc >= 2)
 	// {
 	// 	strcpy(boardfilename,argv[1]);
@@ -6809,38 +6810,38 @@ int main(int argc,char **argv)
 	// 	exit(0);
 	// }
 
-	k = 0;
-	for(i=0;i<256;i++)
-	{
-		j = ((long)palette[i*3])+((long)palette[i*3+1])+((long)palette[i*3+2]);
-		if (j > k) { k = j; whitecol = i; }
-	}
+	// k = 0;
+	// for(i=0;i<256;i++)
+	// {
+	// 	j = ((long)palette[i*3])+((long)palette[i*3+1])+((long)palette[i*3+2]);
+	// 	if (j > k) { k = j; whitecol = i; }
+	// }
 
 	// initmenupaths(argv[0]);
-	menunamecnt = 0;
-	menuhighlight = 0;
+	// menunamecnt = 0;
+	// menuhighlight = 0;
 
-	for(i=0;i<MAXSECTORS;i++) sector[i].extra = -1;
-	for(i=0;i<MAXWALLS;i++) wall[i].extra = -1;
-	for(i=0;i<MAXSPRITES;i++) sprite[i].extra = -1;
+	// for(i=0;i<MAXSECTORS;i++) sector[i].extra = -1;
+	// for(i=0;i<MAXWALLS;i++) wall[i].extra = -1;
+	// for(i=0;i<MAXSPRITES;i++) sprite[i].extra = -1;
 
-	if (loadboard(boardfilename,&posx,&posy,&posz,&ang,&cursectnum) == -1)
-	{
-		initspritelists();
-		posx = 32768;
-		posy = 32768;
-		posz = 0;
-		ang = 1536;
-		numsectors = 0;
-		numwalls = 0;
-		cursectnum = -1;
-		overheadeditor();
-		keystatus[buildkeys[14]] = 0;
-	}
-	else
-	{
-		 ExtLoadMap(boardfilename);
-	}
+	// if (loadboard(boardfilename,&posx,&posy,&posz,&ang,&cursectnum) == -1)
+	// {
+	// 	initspritelists();
+	// 	posx = 32768;
+	// 	posy = 32768;
+	// 	posz = 0;
+	// 	ang = 1536;
+	// 	numsectors = 0;
+	// 	numwalls = 0;
+	// 	cursectnum = -1;
+	// 	overheadeditor();
+	// 	keystatus[buildkeys[14]] = 0;
+	// }
+	// else
+	// {
+	// 	 ExtLoadMap(boardfilename);
+	// }
 	return(0);
 	// updatenumsprites();
 
