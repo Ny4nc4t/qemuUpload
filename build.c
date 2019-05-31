@@ -6780,7 +6780,7 @@ int main(int argc,char **argv)
 	strcpy(boardfilename,argv[1]);
 		if (strchr(boardfilename,'.') == 0)
 			strcat(boardfilename,".map");
-	}
+	
 	// if (argc >= 2)
 	// {
 	// 	strcpy(boardfilename,argv[1]);
