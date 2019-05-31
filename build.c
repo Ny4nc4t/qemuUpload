@@ -6771,20 +6771,24 @@ int main(int argc,char **argv)
 	char ch, quitflag;
 	long i, j, k;
 
-    _platform_init(argc, argv, "BUILD editor by Ken Silverman", "BUILD");
+    // _platform_init(argc, argv, "BUILD editor by Ken Silverman", "BUILD");
 
-    if (getenv("BUILD_NOPENTIUM") != NULL)
-        setmmxoverlay(0);
+    // if (getenv("BUILD_NOPENTIUM") != NULL)
+    //     setmmxoverlay(0);
 
 	editstatus = 1;
-	if (argc >= 2)
-	{
-		strcpy(boardfilename,argv[1]);
+	strcpy(boardfilename,argv[1]);
 		if (strchr(boardfilename,'.') == 0)
 			strcat(boardfilename,".map");
 	}
-	else
-		strcpy(boardfilename,"newboard.map");
+	// if (argc >= 2)
+	// {
+	// 	strcpy(boardfilename,argv[1]);
+	// 	if (strchr(boardfilename,'.') == 0)
+	// 		strcat(boardfilename,".map");
+	// }
+	// else
+	// 	strcpy(boardfilename,"newboard.map");
 
 	// ExtInit();
 	// _initkeys();
