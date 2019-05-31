@@ -6768,15 +6768,15 @@ void editinput(void)
 
 int main(int argc,char **argv)
 {
-	// char ch, quitflag;
-	// long i, j, k;
+	char ch, quitflag;
+	long i, j, k;
 
  //    _platform_init(argc, argv, "BUILD editor by Ken Silverman", "BUILD");
 
  //    if (getenv("BUILD_NOPENTIUM") != NULL)
  //        setmmxoverlay(0);
 
-	// editstatus = 1;
+	editstatus = 1;
 	// if (argc >= 2)
 	// {
 	// 	strcpy(boardfilename,argv[1]);
@@ -6805,7 +6805,7 @@ int main(int argc,char **argv)
 	// 	exit(0);
 	// }
 
-	// k = 0;
+	k = 0;
 	// for(i=0;i<256;i++)
 	// {
 	// 	j = ((long)palette[i*3])+((long)palette[i*3+1])+((long)palette[i*3+2]);
@@ -6813,8 +6813,8 @@ int main(int argc,char **argv)
 	// }
 
 	// initmenupaths(argv[0]);
-	// menunamecnt = 0;
-	// menuhighlight = 0;
+	menunamecnt = 0;
+	menuhighlight = 0;
 
 	// for(i=0;i<MAXSECTORS;i++) sector[i].extra = -1;
 	// for(i=0;i<MAXWALLS;i++) wall[i].extra = -1;
