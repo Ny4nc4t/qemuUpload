@@ -6771,7 +6771,7 @@ int main(int argc,char **argv)
 	char ch, quitflag;
 	long i, j, k;
 
-    _platform_init(argc, argv, "BUILD editor by Ken Silverman", "BUILD");
+    // _platform_init(argc, argv, "BUILD editor by Ken Silverman", "BUILD");
 
     // if (getenv("BUILD_NOPENTIUM") != NULL)
     //     setmmxoverlay(0);
